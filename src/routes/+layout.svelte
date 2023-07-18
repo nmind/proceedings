@@ -1,12 +1,26 @@
 <script>
 	import Header from '$lib/components/Header.svelte';
+	import Footer from '$lib/components/Footer.svelte';
 	import '../app.css';
 </script>
 
-<Header />
+<div>
+	<Header />
 
-<main>
-	<slot />
-</main>
+	<main>
+		<slot />
+	</main>
 
-<footer>Hello, I'm the footer.</footer>
+	<Footer />
+</div>
+
+<style>
+	div {
+		display: flex;
+		flex-direction: column;
+		min-height: 100vh;
+	}
+	main {
+		flex: 1;
+	}
+</style>
