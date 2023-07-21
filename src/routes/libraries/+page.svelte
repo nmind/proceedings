@@ -2,4 +2,12 @@
 	import PaginatedLibraries from '$lib/components/PaginatedLibraries.svelte';
 </script>
 
-<PaginatedLibraries />
+<main>
+	<PaginatedLibraries />
+</main>
+
+<style>
+	main {
+		width: 100vw;
+	}
+</style>

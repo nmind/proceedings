@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Library } from './types';
-
+	import LibraryListviewCard from './LibraryListviewCard.svelte';
 	let librariesPerPage = 10;
 	let currentPage = 1;
 	let searchQuery = '';
@@ -38,37 +38,61 @@
 <div class="search-container">
 	<input
 		type="text"
-		placeholder="Search by name..."
+		placeholder="Search by library name..."
 		bind:value={searchQuery}
 		on:focus={() => changePage(1)}
+		class="input input-bordered input-primary w-full max-w-xs"
 	/>
 </div>
 
-{#if paginatedLibraries && paginatedLibraries.length}
-	<ul>
-		{#each paginatedLibraries as item (item.slug)}
-			<li>
-				<img style="width: 20px; height: 20px;"
-					src={`/library_icons/${item.image}`}
-					alt={`The icon of the ${item.name} neuroimaging library`}
-				/>
-				<a href={`libraries/${item.slug}`}>
-					{item.name}
-				</a>
-			</li>
-		{/each}
-	</ul>
+{#if paginatedLibraries?.length}
+	{#each paginatedLibraries as item (item.slug)}
+		<LibraryListviewCard library={item} />
+	{/each}
 
-	<div class="pagination-buttons" style="display: flex;">
-		<button disabled={currentPage === 1} on:click={() => changePage(currentPage - 1)}
-			>Previous</button
+	<div class="join pagination-wrapper">
+		<button
+			disabled={currentPage === 1}
+			on:click={() => changePage(currentPage - 1)}
+			class="join-item btn btn-outline"
 		>
-		<p>Page {currentPage} of {Math.ceil(filteredLibraries.length / librariesPerPage)}</p>
+			Previous
+		</button>
+<div class="page-counter">
+	<p>Page {currentPage} of {Math.ceil(filteredLibraries.length / librariesPerPage)}</p>
+</div>
+		
 		<button
 			disabled={currentPage >= filteredLibraries.length / librariesPerPage}
-			on:click={() => changePage(currentPage + 1)}>Next</button
+			on:click={() => changePage(currentPage + 1)}
+			class="join-item btn btn-outline"
 		>
+			Next
+		</button>
 	</div>
 {:else}
 	<p>No matching libraries found.</p>
 {/if}
+
+<style>
+	div.search-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-bottom: 1rem;
+	}
+
+	div.pagination-wrapper {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		margin: 2rem 0;
+	}
+
+	div.page-counter {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin: 0 1rem;
+	}
+</style>
