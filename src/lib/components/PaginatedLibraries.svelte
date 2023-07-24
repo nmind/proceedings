@@ -35,7 +35,7 @@
 	}
 </script>
 
-<div class="search-container">
+<div class="flex justify-center items-center mb-4">
 	<input
 		type="text"
 		placeholder="Search by library name..."
@@ -50,7 +50,7 @@
 		<LibraryListviewCard library={item} />
 	{/each}
 
-	<div class="join pagination-wrapper">
+	<div class="join w-full flex justify-center mt-8 mb-8 ml-0 mr-0">
 		<button
 			disabled={currentPage === 1}
 			on:click={() => changePage(currentPage - 1)}
@@ -58,7 +58,7 @@
 		>
 			Previous
 		</button>
-		<div class="page-counter">
+		<div class="flex justify-center items-center mt-0 mb-0 ml-4 mr-4">
 			<p>Page {currentPage} of {Math.ceil(filteredLibraries.length / librariesPerPage)}</p>
 		</div>
 
@@ -73,26 +73,3 @@
 {:else}
 	<p>No matching libraries found.</p>
 {/if}
-
-<style>
-	div.search-container {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		margin-bottom: 1rem;
-	}
-
-	div.pagination-wrapper {
-		width: 100%;
-		display: flex;
-		justify-content: center;
-		margin: 2rem 0;
-	}
-
-	div.page-counter {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		margin: 0 1rem;
-	}
-</style>

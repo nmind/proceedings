@@ -4,29 +4,43 @@
 	export let library: Library;
 </script>
 
-<div class="card-wrapper">
+<div class="p-4">
 	<a href={`libraries/${library.slug}`}>
-		<div class="card lg:card-side bg-base-100 shadow-xl">
-			<div class="card-aside-left">
-				<img
-					class="library-icon"
-					src={`/library_icons/${library.image}`}
-					alt={`The icon of the ${library.name} neuroimaging library`}
-				/>
-				<div class="library-details">
-					<h2 class="card-title">{library.name}</h2>
+		<div
+			class="w-full flex flex-col justify-center lg:flex-row lg:justify-between items-center bg-base-200 shadow-xl"
+		>
+			<div class="w-full lg:max-w-1/2 flex flex-row justify-center items-center">
+				<div class="aspect-square object-cover h-32 p-4">
+					<img
+						src={`/library_icons/${library.image}`}
+						alt={`The icon of the ${library.name} neuroimaging library`}
+					/>
+				</div>
+				<div class="w-full max-w-2/3 p-4">
+					<h2 class="text-lg font-semibold break-words">{library.name}</h2>
 					{#if library?.urls?.length > 0}
-						<div class="library-external-link">
-							<!-- @TODO: make a string-parsing util fn to only add `https://www.` if absent -->
+						<div class="truncate">
 							<a href={`https://www.${library.urls[0]}`} target="_blank" rel="noopener noreferrer"
 								>{library.urls[0]}</a
 							>
 						</div>
 					{/if}
+					<p class="text-sm">Evaluated on March 03, 2022</p>
+					<p class="text-sm">Evaluated using Checklist v0.1</p>
 				</div>
 			</div>
-			<div class="card-body">
-				<div style="height: 5rem; width: 20rem; display: flex">
+			<div class="flex flex-row flex-grow flex-wrap justify-center">
+				<div style="height: 5rem; width: 15rem; padding-right: 2rem;  display: flex">
+					<LibraryListviewShield fillColor="#FFD700" borderColor="black" />
+					<LibraryListviewShield fillColor="#1C274C" borderColor="black" />
+					<LibraryListviewShield fillColor="#CD7F32" borderColor="black" />
+				</div>
+				<div style="height: 5rem; width: 15rem; padding-right: 2rem;  display: flex">
+					<LibraryListviewShield fillColor="#FFD700" borderColor="black" />
+					<LibraryListviewShield fillColor="#1C274C" borderColor="black" />
+					<LibraryListviewShield fillColor="#CD7F32" borderColor="black" />
+				</div>
+				<div style="height: 5rem; width: 15rem; padding-right: 2rem;  display: flex">
 					<LibraryListviewShield fillColor="#FFD700" borderColor="black" />
 					<LibraryListviewShield fillColor="#1C274C" borderColor="black" />
 					<LibraryListviewShield fillColor="#CD7F32" borderColor="black" />
@@ -35,39 +49,3 @@
 		</div>
 	</a>
 </div>
-
-<style>
-	div.card-wrapper {
-		padding: 1rem;
-	}
-
-	div.card-aside-left {
-		width: 100%;
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
-	}
-
-	@media (min-width: 1024px) {
-		div.card-aside-left {
-			width: 25%;
-		}
-	}
-
-	img.library-icon {
-		max-width: 33%;
-		aspect-ratio: 1/1;
-		padding: 1rem;
-	}
-
-	div.library-details {
-		min-width: 66%;
-	}
-
-	div.library-external-link {
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
-	}
-</style>
