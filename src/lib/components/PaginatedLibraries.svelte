@@ -58,10 +58,10 @@
 		>
 			Previous
 		</button>
-<div class="page-counter">
-	<p>Page {currentPage} of {Math.ceil(filteredLibraries.length / librariesPerPage)}</p>
-</div>
-		
+		<div class="page-counter">
+			<p>Page {currentPage} of {Math.ceil(filteredLibraries.length / librariesPerPage)}</p>
+		</div>
+
 		<button
 			disabled={currentPage >= filteredLibraries.length / librariesPerPage}
 			on:click={() => changePage(currentPage + 1)}

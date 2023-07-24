@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Library } from './types';
-
+	import LibraryListviewShield from './LibraryListviewShield.svelte';
 	export let library: Library;
 </script>
 
@@ -26,13 +26,11 @@
 				</div>
 			</div>
 			<div class="card-body">
-				<h2>yo dog so many evaluations!!!</h2>
-				<p>(are gonna go here... eventually)</p>
-				<p>(and now i'm just adding text)</p>
-				<p>(to artificially inflate the height of this div for visual testing)</p>
-				<!-- <div class="card-actions justify-end">
-          <button class="btn btn-primary">Listen</button>
-        </div> -->
+				<div style="height: 5rem; width: 20rem; display: flex">
+					<LibraryListviewShield fillColor="#FFD700" borderColor="black" />
+					<LibraryListviewShield fillColor="#1C274C" borderColor="black" />
+					<LibraryListviewShield fillColor="#CD7F32" borderColor="black" />
+				</div>
 			</div>
 		</div>
 	</a>
