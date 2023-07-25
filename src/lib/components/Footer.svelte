@@ -15,7 +15,7 @@
 			class="link link-hover"><i class="fas fa-fw fa-city" aria-hidden="true" /> Gather</a
 		>
 		<a
-			href="/assets/calendar/NMIND_monthly_meeting.ics"
+			href="/NMIND_monthly_meeting.ics"
 			rel="nofollow noopener noreferrer"
 			target="_blank"
 			class="link link-hover"
@@ -27,7 +27,7 @@
 			target="_blank"
 			class="link link-hover"><i class="fas fa-fw fa-envelope" aria-hidden="true" /> Mailing List</a
 		>
-		<a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true" /> Feed</a>
+		<!-- <a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true" /> Feed</a> -->
 	</div>
 	<div>
 		<p>© 2023 NMIND.</p>
