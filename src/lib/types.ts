@@ -1,5 +1,27 @@
 // types.ts
 
+export interface Library {
+	name: string;
+	urls: string[];
+	description: string;
+	slug: string;
+	image: string;
+	maintainers: {
+		name: string;
+		email: string;
+		affiliation: string;
+	}[];
+	evaluations: Evaluation[];
+}
+
+export interface Evaluation {
+	checklistVersion: string;
+	toolVersion: string;
+	date: string;
+	evaluatorEmail: string;
+	checklist: Checklist;
+}
+
 export interface Checklist {
 	testing: {
 		bronze: {
@@ -69,24 +91,3 @@ export interface Checklist {
 	};
 }
 
-export interface Evaluation {
-	checklistVersion: string;
-	toolVersion: string;
-	date: string;
-	evaluatorEmail: string;
-	checklist: Checklist;
-}
-
-export interface Library {
-	name: string;
-	urls: string[];
-	description: string;
-	slug: string;
-	image: string;
-	maintainers: {
-		name: string;
-		email: string;
-		affiliation: string;
-	}[];
-	evaluations: Evaluation[];
-}

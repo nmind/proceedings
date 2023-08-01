@@ -1,7 +1,7 @@
 <script lang="ts">
 	import EvaluationShieldIcon from './EvaluationShieldIcon.svelte';
 
-	import type { Checklist } from './types';
+	import type { Checklist } from '$lib/types';
 	export let checklist: Checklist;
 
 	function mungeChecklistValue(sectionTier: Record<string, boolean>) {

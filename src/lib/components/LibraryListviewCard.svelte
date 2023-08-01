@@ -1,7 +1,7 @@
 <script lang="ts">
 	import LibraryListviewEvaluation from './LibraryListviewEvaluation.svelte';
 
-	import type { Library, Evaluation } from './types';
+	import type { Library, Evaluation } from '$lib/types';
 	export let library: Library;
 
 	function getMostRecentEvaluation(evaluations: Evaluation[]): Evaluation | null {

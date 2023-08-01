@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Library } from './types';
+	import type { Library } from '$lib/types';
 	import LibraryListviewCard from './LibraryListviewCard.svelte';
 	let librariesPerPage = 10;
 	let currentPage = 1;
