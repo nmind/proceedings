@@ -91,3 +91,27 @@ export interface Checklist {
 	};
 }
 
+interface EvaluationSchema {
+	'@context': {
+		'@version': number;
+		reproschema: string;
+	};
+	tiers: { [key: string]: Tier };
+	items: Item[];
+}
+
+interface Tier {
+	intendedAudience: string[];
+	benefits: string[];
+	prerequisiteTiers?: string[];
+}
+
+interface Item {
+	prompt: string;
+	type: string;
+	id?: string;
+	tier?: string;
+	section?: string;
+	items?: Item[];
+	options?: string[];
+}
