@@ -22,3 +22,7 @@
 	<dt>Date:</dt>
 	<dd class="pl-2">{evaluation.date}</dd>
 </dl>
+
+<div class="mt-6 py-3 text-center">
+	<small class="text-gray-500"><em>*** @TODO evaluation details go here ***</em></small>
+</div>
