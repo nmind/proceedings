@@ -33,16 +33,16 @@
 			<small class="text-gray-500"><em>*** @TODO: display maintainers? ***</em></small>
 		</div>
 
-		{#if data?.evaluations.length > 0}
-			{#if data?.evaluations.length == 1}
+		{#if sortedEvaluations?.length > 0}
+			{#if sortedEvaluations.length == 1}
 				<h2 class="text-lg lg:text-xl xl:text-2xl pt-6 pb-2">NMIND Evaluation</h2>
 				<EvaluationDetail evaluation={data.evaluations[0]} />
 			{:else}
 				<h2 class="text-lg lg:text-xl xl:text-2xl pt-6 pb-2">NMIND Evaluations</h2>
 				{#each sortedEvaluations as evaluation (evaluation)}
-					<div class="collapse collapse-arrow bg-base-300">
+					<div class="collapse collapse-arrow">
 						<input type="radio" name="my-accordion-2" bind:group={selectedOption} />
-						<div class="collapse-title text-xl font-medium">
+						<div class="collapse-title text-xl font-medium bg-base-300">
 							Evaluation: {evaluation.date}
 						</div>
 						<div class="collapse-content bg-base-200">

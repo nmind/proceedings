@@ -1,7 +1,9 @@
 <script lang="ts">
+	import EvaluationItem from '$lib/components/EvaluationItem.svelte';
 	import type { Evaluation } from '$lib/types';
+	import { mungeChecklistSectionTier } from '$lib/utils';
+	
 	export let evaluation: Evaluation;
-
 </script>
 
 <dl class="flex justify-start pb-1">
@@ -24,6 +26,46 @@
 	<dd class="pl-2">{evaluation.date}</dd>
 </dl>
 
-<div class="mt-6 py-3 text-center">
-	<small class="text-gray-500"><em>*** @TODO evaluation details go here ***</em></small>
+<div class="mt-6 py-3">
+	<h3>Testing</h3>
+	<h4>Bronze Tier</h4>
+	{#each mungeChecklistSectionTier(evaluation.checklist.testing.bronze, Number(evaluation.checklistVersion)) as evaluationItem (evaluationItem.prompt)}
+		<EvaluationItem prompt={evaluationItem.prompt} value={evaluationItem.value} />
+	{/each}
+	<h4>Silver Tier</h4>
+	{#each mungeChecklistSectionTier(evaluation.checklist.testing.silver, Number(evaluation.checklistVersion)) as evaluationItem (evaluationItem.prompt)}
+		<EvaluationItem prompt={evaluationItem.prompt} value={evaluationItem.value} />
+	{/each}
+	<h4>Gold Tier</h4>
+	{#each mungeChecklistSectionTier(evaluation.checklist.testing.gold, Number(evaluation.checklistVersion)) as evaluationItem (evaluationItem.prompt)}
+		<EvaluationItem prompt={evaluationItem.prompt} value={evaluationItem.value} />
+	{/each}
+
+	<h3>Infrastructure</h3>
+	<h4>Bronze Tier</h4>
+	{#each mungeChecklistSectionTier(evaluation.checklist.infrastructure.bronze, Number(evaluation.checklistVersion)) as evaluationItem (evaluationItem.prompt)}
+		<EvaluationItem prompt={evaluationItem.prompt} value={evaluationItem.value} />
+	{/each}
+	<h4>Silver Tier</h4>
+	{#each mungeChecklistSectionTier(evaluation.checklist.infrastructure.silver, Number(evaluation.checklistVersion)) as evaluationItem (evaluationItem.prompt)}
+		<EvaluationItem prompt={evaluationItem.prompt} value={evaluationItem.value} />
+	{/each}
+	<h4>Gold Tier</h4>
+	{#each mungeChecklistSectionTier(evaluation.checklist.infrastructure.gold, Number(evaluation.checklistVersion)) as evaluationItem (evaluationItem.prompt)}
+		<EvaluationItem prompt={evaluationItem.prompt} value={evaluationItem.value} />
+	{/each}
+
+	<h3>Documentation</h3>
+	<h4>Bronze Tier</h4>
+	{#each mungeChecklistSectionTier(evaluation.checklist.documentation.bronze, Number(evaluation.checklistVersion)) as evaluationItem (evaluationItem.prompt)}
+		<EvaluationItem prompt={evaluationItem.prompt} value={evaluationItem.value} />
+	{/each}
+	<h4>Silver Tier</h4>
+	{#each mungeChecklistSectionTier(evaluation.checklist.documentation.silver, Number(evaluation.checklistVersion)) as evaluationItem (evaluationItem.prompt)}
+		<EvaluationItem prompt={evaluationItem.prompt} value={evaluationItem.value} />
+	{/each}
+	<h4>Gold Tier</h4>
+	{#each mungeChecklistSectionTier(evaluation.checklist.documentation.gold, Number(evaluation.checklistVersion)) as evaluationItem (evaluationItem.prompt)}
+		<EvaluationItem prompt={evaluationItem.prompt} value={evaluationItem.value} />
+	{/each}
 </div>
