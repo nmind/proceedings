@@ -1,28 +1,8 @@
 <script lang="ts">
 	import LibraryListviewEvaluation from './LibraryListviewEvaluation.svelte';
-
+	import { getMostRecentEvaluation } from '$lib/utils';
 	import type { Library, Evaluation } from '$lib/types';
 	export let library: Library;
-
-	function getMostRecentEvaluation(evaluations: Evaluation[]): Evaluation | null {
-		if (evaluations.length === 0) {
-			return null;
-		} else if (evaluations.length === 1) {
-			return evaluations[0];
-		} else {
-			return evaluations.reduce((mostRecentEvaluationSoFar, currentEvaluation) => {
-				// If there is no most recent evaluation so far, then the current evaluation is the most recent
-				// NB: can't use optional chaining (?.) because `date` is a non-numerically-coalescable string,
-				// which will silently return `false` for comparison-operators against `null` or `undefined`
-				//  #WeLoveJavascript
-				if (!mostRecentEvaluationSoFar || mostRecentEvaluationSoFar.date < currentEvaluation.date) {
-					return currentEvaluation;
-				} else {
-					return mostRecentEvaluationSoFar;
-				}
-			});
-		}
-	}
 
 	let mostRecentEvaluation: Evaluation | null = getMostRecentEvaluation(library.evaluations);
 </script>

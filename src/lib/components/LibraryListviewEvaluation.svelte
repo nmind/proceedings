@@ -1,14 +1,8 @@
 <script lang="ts">
 	import EvaluationShieldIcon from './EvaluationShieldIcon.svelte';
-
+	import { mungeChecklistValue } from '$lib/utils';
 	import type { Checklist } from '$lib/types';
 	export let checklist: Checklist;
-
-	function mungeChecklistValue(sectionTier: Record<string, boolean>) {
-		const sectionTierMatrix = Object.entries(sectionTier);
-		const positiveCount = sectionTierMatrix.filter(([, value]) => value).length;
-		return { numerator: positiveCount, denominator: sectionTierMatrix.length };
-	}
 </script>
 
 <div class="flex flex-row flex-grow flex-wrap justify-center">

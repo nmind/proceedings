@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Evaluation } from '$lib/types';
 	export let evaluation: Evaluation;
+
 </script>
 
 <dl class="flex justify-start pb-1">

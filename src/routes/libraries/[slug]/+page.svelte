@@ -1,10 +1,10 @@
 <script lang="ts">
 	import EvaluationDetail from '$lib/components/EvaluationDetail.svelte';
+	import { sortEvaluationsByDate } from '$lib/utils';
 	import type { Library, Evaluation } from '$lib/types';
+	
 	export let data: Library;
-	let sortedEvaluations = data?.evaluations.sort((a, b) => {
-		return new Date(b.date).getTime() - new Date(a.date).getTime();
-	});
+	let sortedEvaluations = sortEvaluationsByDate(data?.evaluations);
 	let selectedOption: Evaluation = sortedEvaluations[0];
 </script>
 

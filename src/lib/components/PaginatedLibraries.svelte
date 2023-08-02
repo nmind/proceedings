@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Library } from '$lib/types';
 	import LibraryListviewCard from './LibraryListviewCard.svelte';
-	let librariesPerPage = 10;
+	let librariesPerPage = 5;
 	let currentPage = 1;
 	let searchQuery = '';
 	let filteredLibraries: Library[] = [];

@@ -91,6 +91,7 @@ export interface Checklist {
 	};
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface EvaluationSchema {
 	'@context': {
 		'@version': number;
