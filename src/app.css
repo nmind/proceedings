@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+img {
+	display: block;
+	max-width: 100%;
+}
+
+@font-face {
+	font-family: 'Montserrat';
+	src: url('/Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@layer base {
+	body {
+		@apply font-custom;
+	}
+}
