@@ -24,39 +24,33 @@
 	class="w-full flex justify-center items-center flex-col gap-y-6 lg:flex-row lg:gap-x-6 lg:items-stretch my-12"
 >
 	<div class="card w-96 bg-base-100 shadow-xl">
-		<a href="/libraries">
+		<a href="/align">
 			<figure>
 				<img src="/images/align.png" alt="An icon with the text 'Align'" />
 			</figure>
 			<div class="card-body">
-				<p>
-					Grassroots standards for data analysis. Explore where the community is headed and share
-					your perspective!
-				</p>
+				<p>Grassroots standards for data analysis.</p>
+				<p>Explore where the community is headed and share your perspective!</p>
 			</div>
 		</a>
 	</div>
 
 	<div class="card w-96 bg-base-100 shadow-xl">
-		<a href="/libraries">
+		<a href="/test">
 			<figure><img src="/images/test.png" alt="An icon with the text 'Test'" /></figure>
 			<div class="card-body">
-				<p>
-					Accessible and automated tool evaluation at your fingertips. Learn about the standards and
-					how to register your tool!
-				</p>
+				<p>Accessible and automated tool evaluation at your fingertips.</p>
+				<p>Learn about the standards and how to register your tool!</p>
 			</div>
 		</a>
 	</div>
 
 	<div class="card w-96 bg-base-100 shadow-xl">
-		<a href="/libraries">
+		<a href="/engage">
 			<figure><img src="/images/engage.png" alt="An icon with the text 'Engage'" /></figure>
 			<div class="card-body">
-				<p>
-					NMIND relies upon the participation and contribution of community members. Find out how
-					you can join in!
-				</p>
+				<p>NMIND relies upon the participation and contribution of community members.</p>
+				<p>Find out how you can join in!</p>
 			</div>
 		</a>
 	</div>

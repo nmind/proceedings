@@ -2,11 +2,15 @@
 	import EvaluationDetail from '$lib/components/EvaluationDetail.svelte';
 	import { sortEvaluationsByDate } from '$lib/utils';
 	import type { Library, Evaluation } from '$lib/types';
-	
+
 	export let data: Library;
 	let sortedEvaluations = sortEvaluationsByDate(data?.evaluations);
 	let selectedOption: Evaluation = sortedEvaluations[0];
 </script>
+
+<svelte:head>
+	<title>{data?.name ? `${data?.name} | ` : ''}NMIND</title>
+</svelte:head>
 
 <div class="min-w-full flex justify-center mb-8">
 	<div class="max-w-prose">
@@ -22,7 +26,7 @@
 
 		<p class="pt-6">{data?.description}</p>
 
-		<h2 class="text-lg lg:text-xl xl:text-2xl pt-6 pb-2">Visit:</h2>
+		<h2 class="text-xl lg:text-2xl xl:text-3xl pt-6 pb-2">Visit:</h2>
 		<ul class="menu menu-md bg-base-200 w-fit rounded-box">
 			{#each data?.urls as url (url)}
 				<li><a href={`https://${url}`}>{url}</a></li>
@@ -35,10 +39,10 @@
 
 		{#if sortedEvaluations?.length > 0}
 			{#if sortedEvaluations.length == 1}
-				<h2 class="text-lg lg:text-xl xl:text-2xl pt-6 pb-2">NMIND Evaluation</h2>
+				<h2 class="text-xl lg:text-2xl xl:text-3xl pt-6 pb-2">NMIND Evaluation</h2>
 				<EvaluationDetail evaluation={data.evaluations[0]} />
 			{:else}
-				<h2 class="text-lg lg:text-xl xl:text-2xl pt-6 pb-2">NMIND Evaluations</h2>
+				<h2 class="text-xl lg:text-2xl xl:text-3xl pt-6 pb-2">NMIND Evaluations</h2>
 				{#each sortedEvaluations as evaluation (evaluation)}
 					<div class="collapse collapse-arrow">
 						<input type="radio" name="my-accordion-2" bind:group={selectedOption} />
