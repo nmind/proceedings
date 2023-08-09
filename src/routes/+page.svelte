@@ -24,7 +24,7 @@
 	class="w-full flex justify-center items-center flex-col gap-y-6 lg:flex-row lg:gap-x-6 lg:items-stretch my-12"
 >
 	<div class="card w-96 bg-base-100 shadow-xl">
-		<a href="/align">
+		<a href="/alignment">
 			<figure>
 				<img src="/images/align.png" alt="An icon with the text 'Align'" />
 			</figure>
@@ -36,7 +36,7 @@
 	</div>
 
 	<div class="card w-96 bg-base-100 shadow-xl">
-		<a href="/test">
+		<a href="/testing">
 			<figure><img src="/images/test.png" alt="An icon with the text 'Test'" /></figure>
 			<div class="card-body">
 				<p>Accessible and automated tool evaluation at your fingertips.</p>
