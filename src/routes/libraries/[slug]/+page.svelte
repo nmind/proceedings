@@ -27,10 +27,10 @@
 
 		<p class="pt-6">{data?.description}</p>
 
-		<h2 class="text-xl lg:text-2xl xl:text-3xl pt-6 pb-2">Visit:</h2>
+		<h2 class="text-xl lg:text-2xl xl:text-3xl pt-6 pb-2">Links</h2>
 		<ul class="menu menu-md bg-base-200 w-fit rounded-box">
 			{#each data?.urls as url (url)}
-				<li><a href={`https://${url}`}>{url}</a></li>
+				<li><a href={`https://${url.href}`}>{url.text}</a></li>
 			{/each}
 		</ul>
 

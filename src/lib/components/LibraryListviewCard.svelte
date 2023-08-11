@@ -28,11 +28,11 @@
 					{#if library?.urls?.length > 0}
 						<div class="truncate pb-2">
 							<a
-								href={`https://www.${library.urls[0]}`}
+								href={`https://www.${library.urls[0].href}`}
 								target="_blank"
 								rel="noopener noreferrer"
 								class="underline text-sky-500 hover:text-sky-700 decoration-sky-500 hover:decoration-sky-700"
-								>{library.urls[0]}</a
+								>{library.urls[0].href}</a
 							>
 						</div>
 					{/if}

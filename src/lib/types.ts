@@ -2,7 +2,7 @@
 
 export interface Library {
 	name: string;
-	urls: string[];
+	urls: { text: string; href: string }[];
 	description: string;
 	slug: string;
 	image: string;
