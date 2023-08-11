@@ -5,7 +5,8 @@
 
 	export let data: Library;
 	let sortedEvaluations = sortEvaluationsByDate(data?.evaluations);
-	let selectedOption: Evaluation = sortedEvaluations[0];
+	let [mostRecentEvaluation, ...priorEvaluations] = sortedEvaluations;
+	let selectedOption: Evaluation = priorEvaluations[0];
 </script>
 
 <svelte:head>
@@ -33,30 +34,22 @@
 			{/each}
 		</ul>
 
-		<div class="mt-6 py-3 text-center">
-			<small class="text-gray-500"><em>*** @TODO: display maintainers? ***</em></small>
-		</div>
-
 		{#if sortedEvaluations?.length > 0}
-			{#if sortedEvaluations.length == 1}
-				<h2 class="text-xl lg:text-2xl xl:text-3xl pt-6 pb-2">NMIND Evaluation</h2>
-				<EvaluationDetail evaluation={data.evaluations[0]} />
-			{:else}
-				<h2 class="text-xl lg:text-2xl xl:text-3xl pt-6 pb-2">NMIND Evaluations</h2>
-				{#each sortedEvaluations as evaluation (evaluation)}
-					<div class="collapse collapse-arrow">
-						<input type="radio" name="my-accordion-2" bind:group={selectedOption} />
-						<div class="collapse-title text-xl font-medium bg-base-300">
-							Evaluation: {evaluation.date}
-						</div>
-						<div class="collapse-content bg-base-200">
-							<div class="mt-6">
-								<EvaluationDetail {evaluation} />
-							</div>
+			<h2 class="text-xl lg:text-2xl xl:text-3xl pt-6 pb-2">NMIND Evaluation</h2>
+			<EvaluationDetail evaluation={mostRecentEvaluation} />
+			{#each priorEvaluations as evaluation (evaluation)}
+				<div class="collapse collapse-arrow">
+					<input type="radio" name="my-accordion-2" bind:group={selectedOption} />
+					<div class="collapse-title text-xl font-medium bg-base-300">
+						Prior Evaluation: {evaluation.date}
+					</div>
+					<div class="collapse-content bg-base-200">
+						<div class="mt-6">
+							<EvaluationDetail {evaluation} />
 						</div>
 					</div>
-				{/each}
-			{/if}
+				</div>
+			{/each}
 		{/if}
 	</div>
 </div>

@@ -65,6 +65,6 @@ export function mungeChecklistSectionTier(
 
 export function findEvaluationSchemaByVersion(arr: EvaluationSchema[], version: number) {
 	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-	// @ts-ignore - see above
+	// @ts-ignore - TS doesn't like the string-bracket-lookups here, but it works fine
 	return arr.find((item) => item['@context']['@version'] === version);
 }
