@@ -46,6 +46,20 @@
 </div>
 
 {#if paginatedLibraries?.length}
+	<div class="sticky top-0 w-screen z-10">
+		<!-- The Tailwind values below are taken from the inverse of the <div> 
+			underneath the `Library Icon && Details` comment inside 
+			`LibraryListviewCard`, in order to maintain identical 
+			vertical-spacing with the SVG shield-icons -->
+		<div class="ml-auto w-full lg:w-3/4 xl:w-2/3 2xl:w-1/2 bg-white">
+			<div class="h-24 flex flex-row flex-grow flex-wrap justify-center items-center">
+				<p class="w-56 pr-8 text-center text-lg">Testing</p>
+				<p class="w-56 pr-8 text-center text-lg">Infrastructure</p>
+				<p class="w-56 pr-8 text-center text-lg">Documentation</p>
+			</div>
+		</div>
+	</div>
+
 	{#each paginatedLibraries as item (item.slug)}
 		<LibraryListviewCard library={item} />
 	{/each}
