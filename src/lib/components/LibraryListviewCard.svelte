@@ -12,7 +12,7 @@
 <div class="p-4">
 	<a href={`libraries/${library.slug}`}>
 		<div
-			class="w-full flex flex-col justify-center lg:flex-row lg:justify-between items-center bg-base-100 shadow-xl"
+			class="card-wrapper w-full flex flex-col justify-center lg:flex-row lg:justify-between items-center bg-base-100 shadow-xl"
 		>
 			<!-- Library Icon && Details -->
 			<div
@@ -71,3 +71,12 @@
 		</div>
 	</a>
 </div>
+
+<style>
+	.card-wrapper:hover,
+	.card-wrapper:focus {
+		transform: scale(1.05);
+		box-shadow: rgba(0, 0, 0, 0.2) 0px 25px 30px -5px, rgba(0, 0, 0, 0.15) 0px 10px 12px -6px;
+		border-color: rgb(90, 92, 106);
+	}
+</style>
