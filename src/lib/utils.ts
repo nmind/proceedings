@@ -1,4 +1,4 @@
-import type { Evaluation, EvaluationSchema } from './types';
+import type { Evaluation, EvaluationSchema, Library } from './types';
 import data from './data.json';
 
 export function sortEvaluationsByDate(arr: Evaluation[]) {
@@ -67,4 +67,8 @@ export function findEvaluationSchemaByVersion(arr: EvaluationSchema[], version: 
 	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 	// @ts-ignore - TS doesn't like the string-bracket-lookups here, but it works fine
 	return arr.find((item) => item['@context']['@version'] === version);
+}
+
+export function getLibraryUrlByType(library: Library, text: string) {
+	return library.urls.find((url: Record<string, string>) => url.text === text);
 }

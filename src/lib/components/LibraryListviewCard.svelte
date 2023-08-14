@@ -1,10 +1,12 @@
 <script lang="ts">
 	import LibraryListviewEvaluation from './LibraryListviewEvaluation.svelte';
-	import { getMostRecentEvaluation } from '$lib/utils';
+	import { getMostRecentEvaluation, getLibraryUrlByType } from '$lib/utils';
 	import type { Library, Evaluation } from '$lib/types';
 	export let library: Library;
 
 	let mostRecentEvaluation: Evaluation | null = getMostRecentEvaluation(library.evaluations);
+	let homePageUrl = getLibraryUrlByType(library, 'Home Page');
+	let docsUrl = getLibraryUrlByType(library, 'Documentation');
 </script>
 
 <div class="p-4">
@@ -17,10 +19,21 @@
 				class="w-full lg:max-w-1/4 xl:max-w-1/3 2xl:max-w-1/2 flex flex-row justify-center items-center"
 			>
 				<div class="aspect-square object-cover h-32 p-4">
-					<img
-						src={`/library_icons/${library.image}`}
-						alt={`The icon of the ${library.name} neuroimaging library`}
-					/>
+					{#if docsUrl}
+						<a href={`https://www.${docsUrl.href}`} target="_blank" rel="noopener noreferrer">
+							<img
+								src={`/library_icons/${library.image}`}
+								alt={`The icon of the ${library.name} neuroimaging library`}
+							/>
+						</a>
+					{:else}
+						<div class="tooltip" data-tip="No online documentation available">
+							<img
+								src={`/library_icons/${library.image}`}
+								alt={`The icon of the ${library.name} neuroimaging library`}
+							/>
+						</div>
+					{/if}
 				</div>
 
 				<div class="w-full max-w-2/3 p-4">
@@ -28,7 +41,7 @@
 					{#if library?.urls?.length > 0}
 						<div class="truncate pb-2">
 							<a
-								href={`https://www.${library.urls[0].href}`}
+								href={`https://${library.urls[0].href}`}
 								target="_blank"
 								rel="noopener noreferrer"
 								class="underline text-sky-500 hover:text-sky-700 decoration-sky-500 hover:decoration-sky-700"

@@ -2,6 +2,7 @@
 	import EvaluationShieldIcon from './EvaluationShieldIcon.svelte';
 	import { mungeChecklistValue } from '$lib/utils';
 	import type { Checklist } from '$lib/types';
+	
 	export let checklist: Checklist;
 </script>
 
