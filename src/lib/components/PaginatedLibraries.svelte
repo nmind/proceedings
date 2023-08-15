@@ -46,16 +46,23 @@
 </div>
 
 {#if paginatedLibraries?.length}
-	<div class="sticky top-0 w-screen z-10">
+	<div class="sticky top-0 w-screen z-10 bg-white">
 		<!-- The Tailwind values below are taken from the inverse of the <div> 
 			underneath the `Library Icon && Details` comment inside 
 			`LibraryListviewCard`, in order to maintain identical 
 			vertical-spacing with the SVG shield-icons -->
-		<div class="ml-auto w-full lg:w-3/4 xl:w-2/3 2xl:w-1/2 bg-white">
-			<div class="h-24 flex flex-row flex-grow flex-wrap justify-center items-center">
-				<p class="w-56 pr-8 text-center text-lg">Testing</p>
-				<p class="w-56 pr-8 text-center text-lg">Infrastructure</p>
-				<p class="w-56 pr-8 text-center text-lg">Documentation</p>
+		<div class="ml-auto w-full lg:w-3/4 xl:w-2/3 2xl:w-1/2">
+			<!-- Fully admit this is janky as hell, but: the "relative/right-6" offset
+			compensates for the fact to that, (despite my best research) inexplicably,
+			the bounding flexbox for the `LibraryListviewCard` component's SVG shields
+			always calculates out to a couple REM wider than the bounding flexbox below.
+			It's not perfect: but looks better than without, across all breakpoints. -->
+			<div
+				class="h-24 flex flex-row flex-grow flex-wrap justify-center items-center relative lg:right-4 xl:right-6 2xl:right-8"
+			>
+				<p class="w-56 text-center text-lg">Testing</p>
+				<p class="w-56 text-center text-lg">Infrastructure</p>
+				<p class="w-56 text-center text-lg">Documentation</p>
 			</div>
 		</div>
 	</div>
