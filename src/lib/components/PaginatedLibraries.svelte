@@ -58,7 +58,7 @@
 			always calculates out to a couple REM wider than the bounding flexbox below.
 			It's not perfect: but looks better than without, across all breakpoints. -->
 			<div
-				class="h-24 flex flex-row flex-grow flex-wrap justify-center items-center relative lg:right-4 xl:right-6 2xl:right-8"
+				class="h-24 flex flex-row flex-grow flex-wrap justify-center items-center relative right-2 lg:right-4 xl:right-6"
 			>
 				<p class="w-56 text-center text-lg">Testing</p>
 				<p class="w-56 text-center text-lg">Infrastructure</p>
