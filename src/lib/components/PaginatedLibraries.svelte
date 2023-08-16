@@ -4,17 +4,35 @@
 	let librariesPerPage = 5;
 	let currentPage = 1;
 	let searchQuery = '';
+	let metadataQuery = '';
 	let filteredLibraries: Library[] = [];
 	let paginatedLibraries: Library[] = [];
 
-	$: filterData(searchQuery);
+	$: filterData(searchQuery, metadataQuery);
 	$: paginatefilteredData(filteredLibraries, currentPage);
 
-	async function filterData(query: string) {
+	async function filterData(textQuery: string, tagQuery: string) {
 		const data = await import('$lib/data.json');
-		filteredLibraries = data.evaluatedLibraries.filter((item) =>
-			item.name.toLowerCase().includes(query.toLowerCase())
-		);
+		let ongoingFilteredLibraries = data.evaluatedLibraries;
+		// first filter by sectionTier completion
+		// @TODO: implement this!
+
+		// then filter by tag
+		if (tagQuery) {
+			ongoingFilteredLibraries = ongoingFilteredLibraries.filter(
+				(item) => item.tags.some((tag) => tag.toLowerCase().includes(tagQuery.toLowerCase()))
+				// includes(tagQuery)
+			);
+		}
+		// then filter by name
+		if (textQuery) {
+			ongoingFilteredLibraries = ongoingFilteredLibraries.filter(
+				(item) => item.name.toLowerCase().includes(textQuery.toLowerCase())
+				// ||
+				// item.description.toLowerCase().includes(textQuery.toLowerCase())
+			);
+		}
+		filteredLibraries = ongoingFilteredLibraries;
 	}
 
 	async function paginatefilteredData(libraries: Library[], pageNumber: number) {
@@ -36,13 +54,33 @@
 </script>
 
 <div class="flex justify-center items-center mb-4">
-	<input
-		type="text"
-		placeholder="Search by library name..."
-		bind:value={searchQuery}
-		on:focus={() => changePage(1)}
-		class="input input-bordered input-primary w-full max-w-xs"
-	/>
+	<div class="pr-8">
+		<label for="library-name" class="label">
+			<span class="label-text">Search library name</span>
+		</label>
+		<input
+			type="text"
+			placeholder="Search by Text"
+			bind:value={searchQuery}
+			on:focus={() => changePage(1)}
+			class="input input-bordered input-primary w-full max-w-xs"
+			id="library-name"
+		/>
+	</div>
+
+	<div>
+		<label for="library-tags" class="label">
+			<span class="label-text">Search library metadata</span>
+		</label>
+		<input
+			type="text"
+			placeholder="Search by Tag"
+			bind:value={metadataQuery}
+			on:focus={() => changePage(1)}
+			class="input input-bordered input-primary w-full max-w-xs"
+			id="library-tags"
+		/>
+	</div>
 </div>
 
 {#if paginatedLibraries?.length}

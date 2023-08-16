@@ -6,6 +6,7 @@ export interface Library {
 	description: string;
 	slug: string;
 	image: string;
+	tags: string[];
 	maintainers: {
 		name: string;
 		email: string;

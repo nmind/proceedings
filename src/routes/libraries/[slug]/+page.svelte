@@ -27,6 +27,15 @@
 
 		<p class="pt-6">{data?.description}</p>
 
+		{#if data?.tags?.length > 0}
+			<h2 class="text-xl lg:text-2xl xl:text-3xl pt-6 pb-2">Metadata</h2>
+			<div class="flex flex-row flex-wrap gap-4">
+				{#each data?.tags as tag (tag)}
+					<div class="badge badge-primary badge-outline hyphens-none">{tag}</div>
+				{/each}
+			</div>
+		{/if}
+
 		<h2 class="text-xl lg:text-2xl xl:text-3xl pt-6 pb-2">Links</h2>
 		<ul class="menu menu-md bg-base-200 w-fit rounded-box">
 			{#each data?.urls as url (url)}

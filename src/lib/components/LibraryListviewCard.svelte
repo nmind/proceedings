@@ -5,7 +5,6 @@
 	export let library: Library;
 
 	let mostRecentEvaluation: Evaluation | null = getMostRecentEvaluation(library.evaluations);
-	let homePageUrl = getLibraryUrlByType(library, 'Home Page');
 	let docsUrl = getLibraryUrlByType(library, 'Documentation');
 </script>
 
@@ -38,6 +37,7 @@
 
 				<div class="w-full max-w-2/3 p-4">
 					<h2 class="text-lg font-semibold break-words">{library.name}</h2>
+
 					{#if library?.urls?.length > 0}
 						<div class="truncate pb-2">
 							<a
@@ -49,8 +49,17 @@
 							>
 						</div>
 					{/if}
+
 					<p class="text-sm pb-1">Evaluated on {mostRecentEvaluation?.date}</p>
 					<p class="text-sm pb-1">Evaluated using Checklist v{mostRecentEvaluation?.toolVersion}</p>
+
+					{#if library.tags?.length > 0}
+						<div class="flex flex-row flex-wrap gap-4 pt-2">
+							{#each library.tags as tag (tag)}
+								<div class="badge badge-primary badge-outline hyphens-none">{tag}</div>
+							{/each}
+						</div>
+					{/if}
 				</div>
 			</div>
 
