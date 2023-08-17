@@ -1,37 +1,85 @@
 <script lang="ts">
 	import type { Library } from '$lib/types';
 	import LibraryListviewCard from './LibraryListviewCard.svelte';
+	const sectionTierWidgetData = [
+		{
+			name: 'Bronze',
+			value: 'testingBronze'
+		},
+		{
+			name: 'Silver',
+			value: 'testingSilver'
+		},
+		{
+			name: 'Gold',
+			value: 'testingGold'
+		},
+		{
+			name: 'Bronze',
+			value: 'infrastructureBronze'
+		},
+		{
+			name: 'Silver',
+			value: 'infrastructureSilver'
+		},
+		{
+			name: 'Gold',
+			value: 'infrastructureGold'
+		},
+		{
+			name: 'Bronze',
+			value: 'documentationBronze'
+		},
+		{
+			name: 'Silver',
+			value: 'documentationSilver'
+		},
+		{
+			name: 'Gold',
+			value: 'documentationGold'
+		}
+	];
+
 	let librariesPerPage = 5;
 	let currentPage = 1;
 	let searchQuery = '';
 	let metadataQuery = '';
+	let sectionTierQuery: string[] = [];
 	let filteredLibraries: Library[] = [];
 	let paginatedLibraries: Library[] = [];
 
-	$: filterData(searchQuery, metadataQuery);
+	$: filterData(searchQuery, metadataQuery, sectionTierQuery);
 	$: paginatefilteredData(filteredLibraries, currentPage);
 
-	async function filterData(textQuery: string, tagQuery: string) {
+	async function filterData(textQuery: string, tagQuery: string, sectionTierQuery: string[]) {
 		const data = await import('$lib/data.json');
 		let ongoingFilteredLibraries = data.evaluatedLibraries;
 		// first filter by sectionTier completion
-		// @TODO: implement this!
+		if (sectionTierQuery.length) {
+			// @TODO: add actual logic here
+			sectionTierQuery.map((sectionTier) => {
+				console.log(
+					'🚀 ~ file: PaginatedLibraries.svelte:21 ~ sectionTierQuery.map ~ sectionTier:',
+					sectionTier
+				);
+			});
+		}
 
 		// then filter by tag
 		if (tagQuery) {
-			ongoingFilteredLibraries = ongoingFilteredLibraries.filter(
-				(item) => item.tags.some((tag) => tag.toLowerCase().includes(tagQuery.toLowerCase()))
-				// includes(tagQuery)
+			ongoingFilteredLibraries = ongoingFilteredLibraries.filter((item) =>
+				item.tags.some((tag) => tag.toLowerCase().includes(tagQuery.toLowerCase()))
 			);
 		}
 		// then filter by name
 		if (textQuery) {
 			ongoingFilteredLibraries = ongoingFilteredLibraries.filter(
 				(item) => item.name.toLowerCase().includes(textQuery.toLowerCase())
-				// ||
-				// item.description.toLowerCase().includes(textQuery.toLowerCase())
+				// @TODO: ask NMIND team if we also want to search by description:
+				// || item.description.toLowerCase().includes(textQuery.toLowerCase())
 			);
 		}
+		
 		filteredLibraries = ongoingFilteredLibraries;
 	}
 
@@ -53,35 +101,67 @@
 	}
 </script>
 
-<div class="flex justify-center items-center mb-4">
-	<div class="pr-8">
-		<label for="library-name" class="label">
-			<span class="label-text">Search library name</span>
-		</label>
-		<input
-			type="text"
-			placeholder="Search by Text"
-			bind:value={searchQuery}
-			on:focus={() => changePage(1)}
-			class="input input-bordered input-primary w-full max-w-xs"
-			id="library-name"
-		/>
+<div
+	class="flex flex-col items-center md:flex-row md:items-stretch md:justify-around lg:justify-center mb-4 lg:gap-8 xl:gap-12"
+>
+	<div class="flex flex-col justify-evenly">
+		<div>
+			<label for="library-name" class="label">
+				<span class="label-text text-lg">Search by text</span>
+			</label>
+			<input
+				type="text"
+				placeholder="Enter library name"
+				bind:value={searchQuery}
+				on:focus={() => changePage(1)}
+				class="input input-bordered input-primary w-full max-w-xs"
+				id="library-name"
+			/>
+		</div>
+
+		<div>
+			<label for="library-tags" class="label">
+				<span class="label-text text-lg">Search by tag</span>
+			</label>
+			<input
+				type="text"
+				placeholder="Enter library metadata"
+				bind:value={metadataQuery}
+				on:focus={() => changePage(1)}
+				class="input input-bordered input-primary w-full max-w-xs"
+				id="library-tags"
+			/>
+		</div>
 	</div>
 
-	<div>
-		<label for="library-tags" class="label">
-			<span class="label-text">Search library metadata</span>
-		</label>
-		<input
-			type="text"
-			placeholder="Search by Tag"
-			bind:value={metadataQuery}
-			on:focus={() => changePage(1)}
-			class="input input-bordered input-primary w-full max-w-xs"
-			id="library-tags"
-		/>
+	<div class="flex flex-col">
+		<p class="label-text text-lg mb-2">Filter by section- and tier-completion</p>
+		<!-- Border classes specced to match those of `input` tags above -->
+		<div class="grid grid-cols-3 gap-4 p-4 border-1 border-primary rounded-sm">
+			{#each sectionTierWidgetData as sectionTier, index (sectionTier.value)}
+				{#if index === 0}
+					<h2 class="col-span-3 font-medium">Testing:</h2>
+				{:else if index === 3}
+					<h2 class="col-span-3 font-medium">Infrastructure:</h2>
+				{:else if index === 6}
+					<h2 class="col-span-3 font-medium">Documentation:</h2>
+				{/if}
+
+				<label class="inline">
+					<input
+						type="checkbox"
+						name={sectionTier.value}
+						value={sectionTier.value}
+						bind:group={sectionTierQuery}
+					/>
+					{sectionTier.name}
+				</label>
+			{/each}
+		</div>
 	</div>
 </div>
+
+<hr class="mt-12" />
 
 {#if paginatedLibraries?.length}
 	<div class="sticky top-0 w-screen z-10 bg-white">
@@ -104,6 +184,8 @@
 			</div>
 		</div>
 	</div>
+
+	<hr/>
 
 	{#each paginatedLibraries as item (item.slug)}
 		<LibraryListviewCard library={item} />
