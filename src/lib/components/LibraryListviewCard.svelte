@@ -1,11 +1,12 @@
 <script lang="ts">
 	import LibraryListviewEvaluation from './LibraryListviewEvaluation.svelte';
-	import { getMostRecentEvaluation, getLibraryUrlByType } from '$lib/utils';
+	import { libraryURLTextDescriptors } from '$lib/constants';
+	import { getMostRecentEvaluation, getLibraryUrlByTextDescriptor } from '$lib/utils';
 	import type { Library, Evaluation } from '$lib/types';
 	export let library: Library;
 
 	let mostRecentEvaluation: Evaluation | null = getMostRecentEvaluation(library.evaluations);
-	let docsUrl = getLibraryUrlByType(library, 'Documentation');
+	let docsUrl = getLibraryUrlByTextDescriptor(library, libraryURLTextDescriptors.DOCS);
 </script>
 
 <div class="p-4">

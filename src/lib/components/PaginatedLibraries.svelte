@@ -1,44 +1,7 @@
 <script lang="ts">
+	import { sectionTierCompletionCheckboxData } from '$lib/constants';
 	import type { Library } from '$lib/types';
 	import LibraryListviewCard from './LibraryListviewCard.svelte';
-	const sectionTierWidgetData = [
-		{
-			name: 'Bronze',
-			value: 'testingBronze'
-		},
-		{
-			name: 'Silver',
-			value: 'testingSilver'
-		},
-		{
-			name: 'Gold',
-			value: 'testingGold'
-		},
-		{
-			name: 'Bronze',
-			value: 'infrastructureBronze'
-		},
-		{
-			name: 'Silver',
-			value: 'infrastructureSilver'
-		},
-		{
-			name: 'Gold',
-			value: 'infrastructureGold'
-		},
-		{
-			name: 'Bronze',
-			value: 'documentationBronze'
-		},
-		{
-			name: 'Silver',
-			value: 'documentationSilver'
-		},
-		{
-			name: 'Gold',
-			value: 'documentationGold'
-		}
-	];
 
 	let librariesPerPage = 5;
 	let currentPage = 1;
@@ -79,7 +42,7 @@
 				// || item.description.toLowerCase().includes(textQuery.toLowerCase())
 			);
 		}
-		
+
 		filteredLibraries = ongoingFilteredLibraries;
 	}
 
@@ -138,7 +101,7 @@
 		<p class="label-text text-lg mb-2">Filter by section- and tier-completion</p>
 		<!-- Border classes specced to match those of `input` tags above -->
 		<div class="grid grid-cols-3 gap-4 p-4 border-1 border-primary rounded-sm">
-			{#each sectionTierWidgetData as sectionTier, index (sectionTier.value)}
+			{#each sectionTierCompletionCheckboxData as sectionTier, index (sectionTier.value)}
 				{#if index === 0}
 					<h2 class="col-span-3 font-medium">Testing:</h2>
 				{:else if index === 3}
@@ -185,7 +148,7 @@
 		</div>
 	</div>
 
-	<hr/>
+	<hr />
 
 	{#each paginatedLibraries as item (item.slug)}
 		<LibraryListviewCard library={item} />

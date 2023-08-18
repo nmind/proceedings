@@ -69,6 +69,6 @@ export function findEvaluationSchemaByVersion(arr: EvaluationSchema[], version: 
 	return arr.find((item) => item['@context']['@version'] === version);
 }
 
-export function getLibraryUrlByType(library: Library, text: string) {
-	return library.urls.find((url: Record<string, string>) => url.text === text);
+export function getLibraryUrlByTextDescriptor(library: Library, urlText: string) {
+	return library.urls.find((url: Record<string, string>) => url.text === urlText);
 }
