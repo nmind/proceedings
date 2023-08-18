@@ -72,3 +72,45 @@ export function findEvaluationSchemaByVersion(arr: EvaluationSchema[], version: 
 export function getLibraryUrlByTextDescriptor(library: Library, urlText: string) {
 	return library.urls.find((url: Record<string, string>) => url.text === urlText);
 }
+
+export async function filterLibraryData(
+	textQuery: string,
+	tagQuery: string,
+	sectionTierQuery: string[]
+) {
+	const data = await import('$lib/data.json');
+	let ongoingFilteredLibraries = data.evaluatedLibraries;
+
+	// first filter by sectionTier completion
+	if (sectionTierQuery.length) {
+		sectionTierQuery.map((completedSectionTier) => {
+			const [completedSection, completedTier] = completedSectionTier.split('-');
+
+			ongoingFilteredLibraries = ongoingFilteredLibraries.filter((library) => {
+				const mostRecentEvaluation = getMostRecentEvaluation(library.evaluations);
+				const currentSectionTierItems =
+					// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+					// @ts-ignore - TS doesn't like the string-bracket-lookups here, but it works fine
+					mostRecentEvaluation.checklist[completedSection][completedTier];
+				return Object.values(currentSectionTierItems).every((item) => item);
+			});
+		});
+	}
+
+	// then filter by tag
+	if (tagQuery) {
+		ongoingFilteredLibraries = ongoingFilteredLibraries.filter((item) =>
+			item.tags.some((tag) => tag.toLowerCase().includes(tagQuery.toLowerCase()))
+		);
+	}
+	// then filter by name
+	if (textQuery) {
+		ongoingFilteredLibraries = ongoingFilteredLibraries.filter(
+			(item) => item.name.toLowerCase().includes(textQuery.toLowerCase())
+			// @TODO: ask NMIND team if we also want to search by description:
+			// || item.description.toLowerCase().includes(textQuery.toLowerCase())
+		);
+	}
+
+	return ongoingFilteredLibraries;
+}

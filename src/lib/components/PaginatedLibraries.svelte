@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { sectionTierCompletionCheckboxData } from '$lib/constants';
 	import type { Library } from '$lib/types';
+	import { filterLibraryData } from '$lib/utils';
 	import LibraryListviewCard from './LibraryListviewCard.svelte';
 
 	let librariesPerPage = 5;
@@ -11,40 +12,10 @@
 	let filteredLibraries: Library[] = [];
 	let paginatedLibraries: Library[] = [];
 
-	$: filterData(searchQuery, metadataQuery, sectionTierQuery);
+	$: filterLibraryData(searchQuery, metadataQuery, sectionTierQuery).then(
+		(response) => (filteredLibraries = response)
+	);
 	$: paginatefilteredData(filteredLibraries, currentPage);
-
-	async function filterData(textQuery: string, tagQuery: string, sectionTierQuery: string[]) {
-		const data = await import('$lib/data.json');
-		let ongoingFilteredLibraries = data.evaluatedLibraries;
-		// first filter by sectionTier completion
-		if (sectionTierQuery.length) {
-			// @TODO: add actual logic here
-			sectionTierQuery.map((sectionTier) => {
-				console.log(
-					'🚀 ~ file: PaginatedLibraries.svelte:21 ~ sectionTierQuery.map ~ sectionTier:',
-					sectionTier
-				);
-			});
-		}
-
-		// then filter by tag
-		if (tagQuery) {
-			ongoingFilteredLibraries = ongoingFilteredLibraries.filter((item) =>
-				item.tags.some((tag) => tag.toLowerCase().includes(tagQuery.toLowerCase()))
-			);
-		}
-		// then filter by name
-		if (textQuery) {
-			ongoingFilteredLibraries = ongoingFilteredLibraries.filter(
-				(item) => item.name.toLowerCase().includes(textQuery.toLowerCase())
-				// @TODO: ask NMIND team if we also want to search by description:
-				// || item.description.toLowerCase().includes(textQuery.toLowerCase())
-			);
-		}
-
-		filteredLibraries = ongoingFilteredLibraries;
-	}
 
 	async function paginatefilteredData(libraries: Library[], pageNumber: number) {
 		const libraryStart = (pageNumber - 1) * librariesPerPage;
