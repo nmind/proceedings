@@ -10,7 +10,7 @@
 </script>
 
 <div class="p-4">
-	<a href={`libraries/${library.slug}`}>
+	<a href={`libraries/${library.slug}/`}>
 		<div
 			class="card-wrapper w-full flex flex-col justify-center lg:flex-row lg:justify-between items-center bg-base-100 shadow-xl"
 		>
@@ -20,7 +20,7 @@
 			>
 				<div class="aspect-square object-cover h-32 p-4">
 					{#if docsUrl}
-						<a href={`https://www.${docsUrl.href}`} target="_blank" rel="noopener noreferrer">
+						<a href={`https://www.${docsUrl.href}/`} target="_blank" rel="noopener noreferrer">
 							<img
 								src={`/library_icons/${library.image}`}
 								alt={`The icon of the ${library.name} neuroimaging library`}
@@ -42,7 +42,7 @@
 					{#if library?.urls?.length > 0}
 						<div class="truncate pb-2">
 							<a
-								href={`https://${library.urls[0].href}`}
+								href={`https://${library.urls[0].href}/`}
 								target="_blank"
 								rel="noopener noreferrer"
 								class="underline text-sky-500 hover:text-sky-700 decoration-sky-500 hover:decoration-sky-700"

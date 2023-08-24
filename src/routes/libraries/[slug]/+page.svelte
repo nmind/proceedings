@@ -40,7 +40,7 @@
 		<ul class="menu menu-md bg-base-200 w-fit rounded-box">
 			{#each data?.urls as url (url)}
 				<li>
-					<a href={`https://${url.href}`} target="_blank" rel="noopener noreferrer">
+					<a href={`https://${url.href}/`} target="_blank" rel="noopener noreferrer">
 						{url.text}
 					</a>
 				</li>

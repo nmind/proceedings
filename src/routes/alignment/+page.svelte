@@ -45,7 +45,7 @@
 	</div>
 
 	<div class="card w-96 bg-base-100 shadow-xl">
-		<a href="/libraries">
+		<a href="/libraries/">
 			<div class="card-body">
 				<h2 class="card-title">Find reviewed libraries</h2>
 				<p>Want to see what neuroimaging methods have already been evaluated?</p>
