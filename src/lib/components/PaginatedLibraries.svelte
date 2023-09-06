@@ -2,6 +2,7 @@
 	import { sectionTierCompletionCheckboxData } from '$lib/constants';
 	import type { Library } from '$lib/types';
 	import { filterLibraryData } from '$lib/utils';
+
 	import LibraryListviewCard from './LibraryListviewCard.svelte';
 
 	let librariesPerPage = 5;
@@ -32,6 +33,12 @@
 		} else {
 			currentPage = newPage;
 		}
+	}
+
+	function setMetadataQuery(event: MouseEvent): void {
+		event.preventDefault();
+		const target = event.target as HTMLButtonElement;
+		metadataQuery = target.innerHTML;
 	}
 </script>
 
@@ -121,8 +128,8 @@
 
 	<hr />
 
-	{#each paginatedLibraries as item (item.slug)}
-		<LibraryListviewCard library={item} />
+	{#each paginatedLibraries as library (library.slug)}
+		<LibraryListviewCard {library} {setMetadataQuery} />
 	{/each}
 
 	<div class="join w-full flex justify-center mt-8 mb-8 ml-0 mr-0">
