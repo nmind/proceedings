@@ -73,6 +73,35 @@ export function getLibraryUrlByTextDescriptor(library: Library, urlText: string)
 	return library.urls.find((url: Record<string, string>) => url.text === urlText);
 }
 
+function filterTagsByExactQueryMatchesOnly(libraries: Library[], tagQueries: string[]) {
+	tagQueries.map((tagQuery) => {
+		libraries = libraries.filter((item) =>
+			item.tags.some((tag) => tag.toLowerCase() === tagQuery.toLowerCase())
+		);
+	});
+
+	return libraries;
+}
+
+function filterTagsWithFinalQueryInclusiveMatching(libraries: Library[], tagQueries: string[]) {
+	const exactMatchQueries = tagQueries.slice(0, -1);
+	const inclusiveMatchQuery = tagQueries[tagQueries.length - 1];
+
+	// first filter by exact matches on all known-to-be-complete tags
+	exactMatchQueries.map((tagQuery) => {
+		libraries = libraries.filter((item) =>
+			item.tags.some((tag) => tag.toLowerCase() === tagQuery.toLowerCase())
+		);
+	});
+
+	// then filter by inclusive match on final tag, in case the user isn't done typing
+	libraries = libraries.filter((item) =>
+		item.tags.some((tag) => tag.toLowerCase().includes(inclusiveMatchQuery.toLowerCase()))
+	);
+
+	return libraries;
+}
+
 export async function filterLibraryData(
 	textQuery: string,
 	tagQuery: string,
@@ -80,6 +109,7 @@ export async function filterLibraryData(
 ) {
 	const data = await import('$lib/data.json');
 	let ongoingFilteredLibraries = data.evaluatedLibraries;
+	let tagFilterFunction = filterTagsWithFinalQueryInclusiveMatching;
 
 	// first filter by sectionTier completion
 	if (sectionTierQuery.length) {
@@ -99,10 +129,18 @@ export async function filterLibraryData(
 
 	// then filter by tag
 	if (tagQuery) {
-		ongoingFilteredLibraries = ongoingFilteredLibraries.filter((item) =>
-			item.tags.some((tag) => tag.toLowerCase().includes(tagQuery.toLowerCase()))
-		);
+		if (tagQuery.endsWith(',')) {
+			tagFilterFunction = filterTagsByExactQueryMatchesOnly;
+		}
+
+		// split on commas, then remove any empty strings and leading-or-trailing spaces
+		const tagQueries = tagQuery
+			.split(',')
+			.flatMap((tagQuery) => (tagQuery.trim() ? [tagQuery.trim()] : []));
+
+		ongoingFilteredLibraries = tagFilterFunction(ongoingFilteredLibraries, tagQueries);
 	}
+
 	// then filter by name
 	if (textQuery) {
 		ongoingFilteredLibraries = ongoingFilteredLibraries.filter(

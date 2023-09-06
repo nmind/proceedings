@@ -1,9 +1,12 @@
 <script lang="ts">
-	import LibraryListviewEvaluation from './LibraryListviewEvaluation.svelte';
 	import { libraryURLTextDescriptors } from '$lib/constants';
 	import { getMostRecentEvaluation, getLibraryUrlByTextDescriptor } from '$lib/utils';
 	import type { Library, Evaluation } from '$lib/types';
+
+	import LibraryListviewEvaluation from './LibraryListviewEvaluation.svelte';
+
 	export let library: Library;
+	export let setMetadataQuery: (event: MouseEvent) => void;
 
 	let mostRecentEvaluation: Evaluation | null = getMostRecentEvaluation(library.evaluations);
 	let docsUrl = getLibraryUrlByTextDescriptor(library, libraryURLTextDescriptors.DOCS);
@@ -57,7 +60,11 @@
 					{#if library.tags?.length > 0}
 						<div class="flex flex-row flex-wrap gap-4 pt-2">
 							{#each library.tags as tag (tag)}
-								<div class="badge badge-primary badge-outline hyphens-none">{tag}</div>
+								<button
+									type="button"
+									class="btn btn-outline btn-primary btn-xs"
+									on:click={setMetadataQuery}>{tag}</button
+								>
 							{/each}
 						</div>
 					{/if}
