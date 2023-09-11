@@ -2,6 +2,21 @@ export const libraryURLTextDescriptors = {
 	DOCS: 'Documentation'
 };
 
+// Yes, this duplicates the values below: but because it is used for checking equality
+// on an array inside `PaginatedLibraries` using JS (which checks by reference),
+// we can't simply run e.g. `sectionTierCompletionCheckboxData.map(({ value }) => value)`
+export const allSectionTierNames = [
+	'testing-bronze',
+	'testing-silver',
+	'testing-gold',
+	'infrastructure-bronze',
+	'infrastructure-silver',
+	'infrastructure-gold',
+	'documentation-bronze',
+	'documentation-silver',
+	'documentation-gold'
+];
+
 export const sectionTierCompletionCheckboxData = [
 	{
 		name: 'Bronze',

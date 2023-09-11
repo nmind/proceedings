@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { sectionTierCompletionCheckboxData } from '$lib/constants';
+	import { sectionTierCompletionCheckboxData, allSectionTierNames } from '$lib/constants';
 	import type { Library } from '$lib/types';
 	import { filterLibraryData } from '$lib/utils';
 
@@ -40,6 +40,14 @@
 		const target = event.target as HTMLButtonElement;
 		metadataQuery = target.innerHTML;
 	}
+
+	function selectAllSectionTiers() {
+		sectionTierQuery = allSectionTierNames;
+	}
+
+	function unselectAllSectionTiers() {
+		sectionTierQuery = [];
+	}
 </script>
 
 <div
@@ -75,8 +83,21 @@
 		</div>
 	</div>
 
-	<div class="flex flex-col">
+	<div class="flex flex-col" role="region" aria-label="Filter by section and tier completion">
 		<p class="label-text text-lg mb-2">Filter by section- and tier-completion</p>
+
+		{#if sectionTierQuery == allSectionTierNames}
+			<button
+				type="button"
+				class="btn btn-primary btn-outline btn-xs"
+				on:click={unselectAllSectionTiers}>Unselect All</button
+			>
+		{:else}
+			<button type="button" class="btn btn-primary btn-xs" on:click={selectAllSectionTiers}
+				>Select All</button
+			>
+		{/if}
+
 		<!-- Border classes specced to match those of `input` tags above -->
 		<div class="grid grid-cols-3 gap-4 p-4 border-1 border-primary rounded-sm">
 			{#each sectionTierCompletionCheckboxData as sectionTier, index (sectionTier.value)}
@@ -88,8 +109,9 @@
 					<h2 class="col-span-3 font-medium">Documentation:</h2>
 				{/if}
 
-				<label class="inline">
+				<label for={sectionTier.value} class="inline">
 					<input
+						id={sectionTier.value}
 						type="checkbox"
 						name={sectionTier.value}
 						value={sectionTier.value}
