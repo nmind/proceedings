@@ -78,7 +78,7 @@
 				checklist.documentation.bronze
 			)}
 			sectionTierCompletionEvidence={mungeChecklistSectionTier(
-				checklist.testing.bronze,
+				checklist.documentation.bronze,
 				schemaVersion
 			)}
 		/>
