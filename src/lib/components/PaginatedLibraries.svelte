@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { sectionTierCompletionCheckboxData, allSectionTierNames } from '$lib/constants';
 	import type { Library } from '$lib/types';
-	import { filterLibraryData } from '$lib/utils';
+	import { filterLibraryData, tooltip } from '$lib/utils';
 
 	import LibraryListviewCard from './LibraryListviewCard.svelte';
 
@@ -56,7 +56,7 @@
 	<div class="flex flex-col justify-evenly">
 		<div>
 			<label for="library-name" class="label">
-				<span class="label-text text-lg">Search by text</span>
+				<span class="label-text text-lg">Search by text:</span>
 			</label>
 			<input
 				type="text"
@@ -70,7 +70,14 @@
 
 		<div>
 			<label for="library-tags" class="label">
-				<span class="label-text text-lg">Search by tag</span>
+				<span class="label-text text-lg">Search by tag:</span>
+				<span
+					aria-hidden="true"
+					use:tooltip={{
+						content:
+							'Separate multiple tags by comma: e.g. "fsl, docker, python" or "debian,tomography"'
+					}}>❔</span
+				>
 			</label>
 			<input
 				type="text"
@@ -84,7 +91,7 @@
 	</div>
 
 	<div class="flex flex-col" role="region" aria-label="Filter by section and tier completion">
-		<p class="label-text text-lg mb-2">Filter by section- and tier-completion</p>
+		<p class="label-text text-lg mb-2">Filter by section- and tier-completion:</p>
 
 		{#if sectionTierQuery == allSectionTierNames}
 			<button
