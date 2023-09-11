@@ -1,4 +1,8 @@
+import tippy from 'tippy.js';
+
 import type { Evaluation, EvaluationSchema, Library } from './types';
+import type { Props } from 'tippy.js/index.d.ts';
+
 import data from './data.json';
 
 export function sortEvaluationsByDate(arr: Evaluation[]) {
@@ -27,7 +31,7 @@ export function getMostRecentEvaluation(evaluations: Evaluation[]): Evaluation |
 	}
 }
 
-export function mungeChecklistValue(sectionTier: Record<string, boolean>) {
+export function getCompletionFractionFromSectionTier(sectionTier: Record<string, boolean>) {
 	const sectionTierMatrix = Object.entries(sectionTier);
 	const positiveCount = sectionTierMatrix.filter(([, value]) => value).length;
 	return { numerator: positiveCount, denominator: sectionTierMatrix.length };
@@ -151,4 +155,33 @@ export async function filterLibraryData(
 	}
 
 	return ongoingFilteredLibraries;
+}
+
+// Stolen with no apologies from
+// https://dev.to/danawoodman/svelte-quick-tip-using-actions-to-integrate-with-javascript-libraries-tippy-tooltips-2m94
+export function tooltip(node: HTMLElement, params: { content?: string; allowHTML?: boolean }) {
+	// Determine the title to show
+	const custom = params.content;
+	const title = node.title;
+	const label = node.getAttribute('aria-label');
+	const finalContent = custom || title || label || '';
+
+	// Ensure the "aria-label" attribute is set:
+	// https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-label_attribute
+	if (!label) node.setAttribute('aria-label', finalContent);
+
+	// Clear out the HTML title attribute; we don't want the default behavior showing up on hover.
+	node.title = '';
+
+	// Support any of the Tippy props by forwarding all "params":
+	// https://atomiks.github.io/tippyjs/v6/all-props/
+	const tip = tippy(node, { ...params, content: finalContent });
+
+	return {
+		// If the props change, update the Tippy instance:
+		update: (newParams: Props) => tip.setProps({ ...newParams, content: finalContent }),
+
+		// Clean up the Tippy instance on unmount:
+		destroy: () => tip.destroy()
+	};
 }

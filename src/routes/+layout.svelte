@@ -1,6 +1,8 @@
 <script>
 	import Header from '$lib/components/Header.svelte';
 	import Footer from '$lib/components/Footer.svelte';
+	
+	import 'tippy.js/dist/tippy.css';
 	import '../app.css';
 </script>
 

@@ -116,3 +116,8 @@ interface Item {
 	items?: Item[];
 	options?: string[];
 }
+
+export interface EvaluationItemData {
+	prompt: string;
+	value: boolean;
+}

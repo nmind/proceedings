@@ -73,7 +73,10 @@
 
 			<!-- Most-Recent Evaluation -->
 			{#if mostRecentEvaluation}
-				<LibraryListviewEvaluation checklist={mostRecentEvaluation.checklist} />
+				<LibraryListviewEvaluation
+					checklist={mostRecentEvaluation.checklist}
+					schemaVersion={Number(mostRecentEvaluation.checklistVersion)}
+				/>
 			{:else}
 				<div class="w-full text-center">
 					<p>
