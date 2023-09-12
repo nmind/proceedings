@@ -4,9 +4,10 @@
 	import type { Library, Evaluation } from '$lib/types';
 
 	export let data: Library;
+
 	let sortedEvaluations = sortEvaluationsByDate(data?.evaluations);
 	let [mostRecentEvaluation, ...priorEvaluations] = sortedEvaluations;
-	let selectedOption: Evaluation = priorEvaluations[0];
+	let selectedOption: Evaluation[] = [];
 </script>
 
 <svelte:head>
@@ -52,7 +53,7 @@
 			<EvaluationDetail evaluation={mostRecentEvaluation} />
 			{#each priorEvaluations as evaluation (evaluation)}
 				<div class="collapse collapse-arrow">
-					<input type="radio" name="my-accordion-2" bind:group={selectedOption} />
+					<input type="checkbox" name="my-accordion-2" bind:group={selectedOption} />
 					<div class="collapse-title text-xl font-medium bg-base-300">
 						Prior Evaluation: {evaluation.date}
 					</div>
