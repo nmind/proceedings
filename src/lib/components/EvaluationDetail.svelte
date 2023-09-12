@@ -41,8 +41,7 @@
 		<EvaluationItem prompt={evaluationItem.prompt} value={evaluationItem.value} />
 	{/each}
 
-	<hr class="my-8" />
-	<h3 class="text-lg lg:text-xl xl:text-2xl">Infrastructure</h3>
+	<h3 class="text-lg lg:text-xl xl:text-2xl mt-12">Infrastructure</h3>
 	<h4 class="font-semibold mt-6">Bronze Tier</h4>
 	{#each mungeChecklistSectionTier(evaluation.checklist.infrastructure.bronze, Number(evaluation.checklistVersion)) as evaluationItem (evaluationItem.prompt)}
 		<EvaluationItem prompt={evaluationItem.prompt} value={evaluationItem.value} />
@@ -56,8 +55,7 @@
 		<EvaluationItem prompt={evaluationItem.prompt} value={evaluationItem.value} />
 	{/each}
 
-	<hr class="my-8" />
-	<h3 class="text-lg lg:text-xl xl:text-2xl">Documentation</h3>
+	<h3 class="text-lg lg:text-xl xl:text-2xl mt-12">Documentation</h3>
 	<h4 class="font-semibold mt-6">Bronze Tier</h4>
 	{#each mungeChecklistSectionTier(evaluation.checklist.documentation.bronze, Number(evaluation.checklistVersion)) as evaluationItem (evaluationItem.prompt)}
 		<EvaluationItem prompt={evaluationItem.prompt} value={evaluationItem.value} />

@@ -29,7 +29,7 @@
 		<p class="pt-6">{data?.description}</p>
 
 		{#if data?.tags?.length > 0}
-			<h2 class="text-xl lg:text-2xl xl:text-3xl pt-6 pb-2">Metadata</h2>
+			<h2 class="text-xl lg:text-2xl xl:text-3xl pt-6 pb-4">Tags</h2>
 			<div class="flex flex-row flex-wrap gap-4">
 				{#each data?.tags as tag (tag)}
 					<div class="badge badge-primary badge-outline hyphens-none">{tag}</div>
@@ -38,10 +38,15 @@
 		{/if}
 
 		<h2 class="text-xl lg:text-2xl xl:text-3xl pt-6 pb-2">Links</h2>
-		<ul class="menu menu-md bg-base-200 w-fit rounded-box">
+		<ul class="mb-6">
 			{#each data?.urls as url (url)}
-				<li>
-					<a href={`https://${url.href}/`} target="_blank" rel="noopener noreferrer">
+				<li class="mb-2">
+					<a
+						href={`https://${url.href}/`}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="underline decoration-transparent transition duration-300 ease-in-out hover:decoration-inherit"
+					>
 						{url.text}
 					</a>
 				</li>
@@ -49,6 +54,7 @@
 		</ul>
 
 		{#if sortedEvaluations?.length > 0}
+			<hr />
 			<h2 class="text-xl lg:text-2xl xl:text-3xl pt-6 pb-2">NMIND Evaluation</h2>
 			<EvaluationDetail evaluation={mostRecentEvaluation} />
 			{#each priorEvaluations as evaluation (evaluation)}
