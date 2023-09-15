@@ -5,12 +5,12 @@
 		</div>
 		<div class="flex-none">
 			<ul class="menu menu-horizontal px-1">
-				<li><a href="/libraries/" class="btn btn-ghost normal-case text-lg font-light">About</a></li>
+				<li><a href="/" class="btn btn-ghost normal-case text-lg font-light">About</a></li>
 				<li>
-					<a href="/libraries/" class="btn btn-ghost normal-case text-lg font-light">Get Involved</a>
+					<a href="/" class="btn btn-ghost normal-case text-lg font-light">Get Involved</a>
 				</li>
 				<li>
-					<a href="/libraries/" class="btn btn-ghost normal-case text-lg font-light">Proceedings</a>
+					<a href="/" class="btn btn-ghost normal-case text-lg font-light">Proceedings</a>
 				</li>
 			</ul>
 		</div>
