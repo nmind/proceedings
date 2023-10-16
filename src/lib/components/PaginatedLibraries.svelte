@@ -38,7 +38,7 @@
 	function setMetadataQuery(event: MouseEvent): void {
 		event.preventDefault();
 		const target = event.target as HTMLButtonElement;
-		metadataQuery = target.innerHTML;
+		metadataQuery = `${target.innerHTML}, ${metadataQuery}`;
 	}
 
 	function selectAllSectionTiers() {
