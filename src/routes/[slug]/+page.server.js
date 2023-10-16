@@ -2,5 +2,5 @@
 export async function entries() {
 	const data = await import('$lib/data.json');
 
-	return data.evaluatedLibraries.map((library) => ({ slug: library.slug }));
+	return data.evaluatedTools.map((tool) => ({ slug: tool.slug }));
 }

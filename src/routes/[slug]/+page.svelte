@@ -1,9 +1,9 @@
 <script lang="ts">
 	import EvaluationDetail from '$lib/components/EvaluationDetail.svelte';
 	import { sortEvaluationsByDate } from '$lib/utils';
-	import type { Library, Evaluation } from '$lib/types';
+	import type { Tool, Evaluation } from '$lib/types';
 
-	export let data: Library;
+	export let data: Tool;
 
 	let sortedEvaluations = sortEvaluationsByDate(data?.evaluations);
 	let [mostRecentEvaluation, ...priorEvaluations] = sortedEvaluations;
@@ -19,8 +19,8 @@
 		<div class="flex flex-row items-center justify-evenly">
 			<div class="aspect-square object-cover max-h-56 p-4">
 				<img
-					src={`/library_icons/${data?.image}`}
-					alt={`Icon for the ${data?.name} neuroimaging library`}
+					src={`/tool_icons/${data?.image}`}
+					alt={`Icon for the ${data?.name} neuroimaging tool`}
 				/>
 			</div>
 			<h1 class="text-4xl lg:text-5xl xl:text-6xl break-words">{data?.name}</h1>

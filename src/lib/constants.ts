@@ -1,9 +1,9 @@
-export const libraryURLTextDescriptors = {
+export const toolURLTextDescriptors = {
 	DOCS: 'Documentation'
 };
 
 // Yes, this duplicates the values below: but because it is used for checking equality
-// on an array inside `PaginatedLibraries` using JS (which checks by reference),
+// on an array inside `PaginatedTools` using JS (which checks by reference),
 // we can't simply run e.g. `sectionTierCompletionCheckboxData.map(({ value }) => value)`
 export const allSectionTierNames = [
 	'testing-bronze',

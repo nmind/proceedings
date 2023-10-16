@@ -1,5 +1,5 @@
 {
-	"evaluatedLibraries": [
+	"evaluatedTools": [
 		{
 			"name": "3D Slicer",
 			"description": "3D Slicer is a free, open-source software package developed by the Surgical Planning Laboratory at the Harvard Medical School. It is primarily used for 3D visualization and analysis of medical images, making it particularly useful in neuroimaging studies. It supports a wide array of functionalities including image segmentation, registration, and 3D visualization.",

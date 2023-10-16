@@ -1,23 +1,23 @@
 <script lang="ts">
-	import { libraryURLTextDescriptors } from '$lib/constants';
-	import { getMostRecentEvaluation, getLibraryUrlByTextDescriptor } from '$lib/utils';
-	import type { Library, Evaluation } from '$lib/types';
+	import { toolURLTextDescriptors } from '$lib/constants';
+	import { getMostRecentEvaluation, getToolUrlByTextDescriptor } from '$lib/utils';
+	import type { Tool, Evaluation } from '$lib/types';
 
-	import LibraryListviewEvaluation from './LibraryListviewEvaluation.svelte';
+	import ToolListviewEvaluation from './ToolListviewEvaluation.svelte';
 
-	export let library: Library;
+	export let tool: Tool;
 	export let setMetadataQuery: (event: MouseEvent) => void;
 
-	let mostRecentEvaluation: Evaluation | null = getMostRecentEvaluation(library.evaluations);
-	let docsUrl = getLibraryUrlByTextDescriptor(library, libraryURLTextDescriptors.DOCS);
+	let mostRecentEvaluation: Evaluation | null = getMostRecentEvaluation(tool.evaluations);
+	let docsUrl = getToolUrlByTextDescriptor(tool, toolURLTextDescriptors.DOCS);
 </script>
 
 <div class="p-4">
-	<a href={`/${library.slug}/`}>
+	<a href={`/${tool.slug}/`}>
 		<div
 			class="card-wrapper w-full flex flex-col justify-center lg:flex-row lg:justify-between items-center bg-base-100 shadow-xl"
 		>
-			<!-- Library Icon && Details -->
+			<!-- Tool Icon && Details -->
 			<div
 				class="w-full lg:max-w-1/4 xl:max-w-1/3 2xl:max-w-1/2 flex flex-row justify-center items-center"
 			>
@@ -25,31 +25,31 @@
 					{#if docsUrl}
 						<a href={`https://www.${docsUrl.href}/`} target="_blank" rel="noopener noreferrer">
 							<img
-								src={`/library_icons/${library.image}`}
-								alt={`The icon of the ${library.name} neuroimaging library`}
+								src={`/tool_icons/${tool.image}`}
+								alt={`The icon of the ${tool.name} neuroimaging tool`}
 							/>
 						</a>
 					{:else}
 						<div class="tooltip" data-tip="No online documentation available">
 							<img
-								src={`/library_icons/${library.image}`}
-								alt={`The icon of the ${library.name} neuroimaging library`}
+								src={`/tool_icons/${tool.image}`}
+								alt={`The icon of the ${tool.name} neuroimaging tool`}
 							/>
 						</div>
 					{/if}
 				</div>
 
 				<div class="w-full max-w-2/3 p-4">
-					<h2 class="text-lg font-semibold break-words">{library.name}</h2>
+					<h2 class="text-lg font-semibold break-words">{tool.name}</h2>
 
-					{#if library?.urls?.length > 0}
+					{#if tool?.urls?.length > 0}
 						<div class="truncate pb-2">
 							<a
-								href={`https://${library.urls[0].href}/`}
+								href={`https://${tool.urls[0].href}/`}
 								target="_blank"
 								rel="noopener noreferrer"
 								class="underline text-sky-500 hover:text-sky-700 decoration-sky-500 hover:decoration-sky-700"
-								>{library.urls[0].href}</a
+								>{tool.urls[0].href}</a
 							>
 						</div>
 					{/if}
@@ -57,9 +57,9 @@
 					<p class="text-sm pb-1">Evaluated on {mostRecentEvaluation?.date}</p>
 					<p class="text-sm pb-1">Evaluated using Checklist v{mostRecentEvaluation?.toolVersion}</p>
 
-					{#if library.tags?.length > 0}
+					{#if tool.tags?.length > 0}
 						<div class="flex flex-row flex-wrap gap-4 pt-2">
-							{#each library.tags as tag (tag)}
+							{#each tool.tags as tag (tag)}
 								<button
 									type="button"
 									class="btn btn-outline btn-primary btn-xs"
@@ -73,14 +73,14 @@
 
 			<!-- Most-Recent Evaluation -->
 			{#if mostRecentEvaluation}
-				<LibraryListviewEvaluation
+				<ToolListviewEvaluation
 					checklist={mostRecentEvaluation.checklist}
 					schemaVersion={Number(mostRecentEvaluation.checklistVersion)}
 				/>
 			{:else}
 				<div class="w-full text-center">
 					<p>
-						This library has not been evaluated yet! To help do so, <a
+						This tool has not been evaluated yet! To help do so, <a
 							href="/"
 							class="underline text-sky-500 hover:text-sky-700 decoration-sky-500 hover:decoration-sky-700"
 							>click here</a

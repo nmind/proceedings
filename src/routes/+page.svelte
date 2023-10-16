@@ -1,9 +1,9 @@
 <script>
-	import PaginatedLibraries from '$lib/components/PaginatedLibraries.svelte';
+	import PaginatedTools from '$lib/components/PaginatedTools.svelte';
 </script>
 
 <svelte:head>
-	<title>Evaluated Libraries | NMIND</title>
+	<title>Evaluated Tools | NMIND</title>
 </svelte:head>
 
-<PaginatedLibraries />
+<PaginatedTools />

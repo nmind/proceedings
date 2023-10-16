@@ -1,32 +1,31 @@
 <script lang="ts">
 	import { sectionTierCompletionCheckboxData, allSectionTierNames } from '$lib/constants';
-	import type { Library } from '$lib/types';
-	import { filterLibraryData, tooltip } from '$lib/utils';
+	import type { Tool } from '$lib/types';
+	import { filterToolData, tooltip } from '$lib/utils';
 
-	import LibraryListviewCard from './LibraryListviewCard.svelte';
+	import ToolListviewCard from './ToolListviewCard.svelte';
 
-	let librariesPerPage = 5;
+	let toolsPerPage = 5;
 	let currentPage = 1;
 	let searchQuery = '';
 	let metadataQuery = '';
 	let sectionTierQuery: string[] = [];
-	let filteredLibraries: Library[] = [];
-	let paginatedLibraries: Library[] = [];
+	let filteredTools: Tool[] = [];
+	let paginatedTools: Tool[] = [];
 
-	$: filterLibraryData(searchQuery, metadataQuery, sectionTierQuery).then(
-		(response) => (filteredLibraries = response)
+	$: filterToolData(searchQuery, metadataQuery, sectionTierQuery).then(
+		(response) => (filteredTools = response)
 	);
-	$: paginatefilteredData(filteredLibraries, currentPage);
+	$: paginatefilteredData(filteredTools, currentPage);
 
-	async function paginatefilteredData(libraries: Library[], pageNumber: number) {
-		const libraryStart = (pageNumber - 1) * librariesPerPage;
-		const libraryEnd = pageNumber * librariesPerPage;
-		paginatedLibraries = libraries.slice(libraryStart, libraryEnd);
+	async function paginatefilteredData(tools: Tool[], pageNumber: number) {
+		const toolStart = (pageNumber - 1) * toolsPerPage;
+		const toolEnd = pageNumber * toolsPerPage;
+		paginatedTools = tools.slice(toolStart, toolEnd);
 	}
 
 	function changePage(newPage: number) {
-		const outOfRange: boolean =
-			newPage < 1 || newPage - 1 > filteredLibraries.length / librariesPerPage;
+		const outOfRange: boolean = newPage < 1 || newPage - 1 > filteredTools.length / toolsPerPage;
 
 		if (outOfRange) {
 			currentPage = 1;
@@ -38,7 +37,17 @@
 	function setMetadataQuery(event: MouseEvent): void {
 		event.preventDefault();
 		const target = event.target as HTMLButtonElement;
-		metadataQuery = `${target.innerHTML}, ${metadataQuery}`;
+		const searchableQueries = metadataQuery
+			.split(',')
+			.flatMap((tagQuery) => (tagQuery.trim() ? [tagQuery.trim()] : []));
+
+		if (searchableQueries.includes(target.innerHTML)) {
+			metadataQuery = searchableQueries
+				.filter((tagQuery) => tagQuery !== target.innerHTML)
+				.join(', ');
+		} else {
+			metadataQuery = `${target.innerHTML}, ${metadataQuery}`;
+		}
 	}
 
 	function selectAllSectionTiers() {
@@ -55,21 +64,21 @@
 >
 	<div class="flex flex-col justify-evenly">
 		<div>
-			<label for="library-name" class="label">
+			<label for="tool-name" class="label">
 				<span class="label-text text-lg">Search by text:</span>
 			</label>
 			<input
 				type="text"
-				placeholder="Enter library name"
+				placeholder="Enter tool name"
 				bind:value={searchQuery}
 				on:focus={() => changePage(1)}
 				class="input input-bordered input-primary w-full max-w-xs"
-				id="library-name"
+				id="tool-name"
 			/>
 		</div>
 
 		<div>
-			<label for="library-tags" class="label">
+			<label for="tool-tags" class="label">
 				<span class="label-text text-lg">Search by tag:</span>
 				<span
 					aria-hidden="true"
@@ -81,11 +90,11 @@
 			</label>
 			<input
 				type="text"
-				placeholder="Enter library metadata"
+				placeholder="Enter tool metadata"
 				bind:value={metadataQuery}
 				on:focus={() => changePage(1)}
 				class="input input-bordered input-primary w-full max-w-xs"
-				id="library-tags"
+				id="tool-tags"
 			/>
 		</div>
 	</div>
@@ -133,16 +142,16 @@
 
 <hr class="mt-12" />
 
-{#if paginatedLibraries?.length}
+{#if paginatedTools?.length}
 	<div class="sticky top-0 w-screen z-10 bg-white">
 		<!-- The Tailwind values below are taken from the inverse of the <div> 
-			underneath the `Library Icon && Details` comment inside 
-			`LibraryListviewCard`, in order to maintain identical 
+			underneath the `Tool Icon && Details` comment inside 
+			`ToolListviewCard`, in order to maintain identical 
 			vertical-spacing with the SVG shield-icons -->
 		<div class="ml-auto w-full lg:w-3/4 xl:w-2/3 2xl:w-1/2">
 			<!-- Fully admit this is janky as hell, but: the "relative/right-6" offset
 			compensates for the fact to that, (despite my best research) inexplicably,
-			the bounding flexbox for the `LibraryListviewCard` component's SVG shields
+			the bounding flexbox for the `ToolListviewCard` component's SVG shields
 			always calculates out to a couple REM wider than the bounding flexbox below.
 			It's not perfect: but looks better than without, across all breakpoints. -->
 			<div
@@ -157,8 +166,8 @@
 
 	<hr />
 
-	{#each paginatedLibraries as library (library.slug)}
-		<LibraryListviewCard {library} {setMetadataQuery} />
+	{#each paginatedTools as tool (tool.slug)}
+		<ToolListviewCard {tool} {setMetadataQuery} />
 	{/each}
 
 	<div class="join w-full flex justify-center mt-8 mb-8 ml-0 mr-0">
@@ -170,11 +179,11 @@
 			Previous
 		</button>
 		<div class="flex justify-center items-center mt-0 mb-0 ml-4 mr-4">
-			<p>Page {currentPage} of {Math.ceil(filteredLibraries.length / librariesPerPage)}</p>
+			<p>Page {currentPage} of {Math.ceil(filteredTools.length / toolsPerPage)}</p>
 		</div>
 
 		<button
-			disabled={currentPage >= filteredLibraries.length / librariesPerPage}
+			disabled={currentPage >= filteredTools.length / toolsPerPage}
 			on:click={() => changePage(currentPage + 1)}
 			class="join-item btn btn-outline"
 		>
@@ -182,5 +191,5 @@
 		</button>
 	</div>
 {:else}
-	<p>No matching libraries found.</p>
+	<p>No matching tools found.</p>
 {/if}

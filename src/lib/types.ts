@@ -1,6 +1,6 @@
 // types.ts
 
-export interface Library {
+export interface Tool {
 	name: string;
 	urls: { text: string; href: string }[];
 	description: string;

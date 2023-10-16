@@ -1,6 +1,6 @@
 import tippy from 'tippy.js';
 
-import type { Evaluation, EvaluationSchema, Library } from './types';
+import type { Evaluation, EvaluationSchema, Tool } from './types';
 import type { Props } from 'tippy.js/index.d.ts';
 
 import data from './data.json';
@@ -73,46 +73,46 @@ export function findEvaluationSchemaByVersion(arr: EvaluationSchema[], version: 
 	return arr.find((item) => item['@context']['@version'] === version);
 }
 
-export function getLibraryUrlByTextDescriptor(library: Library, urlText: string) {
-	return library.urls.find((url: Record<string, string>) => url.text === urlText);
+export function getToolUrlByTextDescriptor(tool: Tool, urlText: string) {
+	return tool.urls.find((url: Record<string, string>) => url.text === urlText);
 }
 
-function filterTagsByExactQueryMatchesOnly(libraries: Library[], tagQueries: string[]) {
+function filterTagsByExactQueryMatchesOnly(tools: Tool[], tagQueries: string[]) {
 	tagQueries.map((tagQuery) => {
-		libraries = libraries.filter((item) =>
+		tools = tools.filter((item) =>
 			item.tags.some((tag) => tag.toLowerCase() === tagQuery.toLowerCase())
 		);
 	});
 
-	return libraries;
+	return tools;
 }
 
-function filterTagsWithFinalQueryInclusiveMatching(libraries: Library[], tagQueries: string[]) {
+function filterTagsWithFinalQueryInclusiveMatching(tools: Tool[], tagQueries: string[]) {
 	const exactMatchQueries = tagQueries.slice(0, -1);
 	const inclusiveMatchQuery = tagQueries[tagQueries.length - 1];
 
 	// first filter by exact matches on all known-to-be-complete tags
 	exactMatchQueries.map((tagQuery) => {
-		libraries = libraries.filter((item) =>
+		tools = tools.filter((item) =>
 			item.tags.some((tag) => tag.toLowerCase() === tagQuery.toLowerCase())
 		);
 	});
 
 	// then filter by inclusive match on final tag, in case the user isn't done typing
-	libraries = libraries.filter((item) =>
+	tools = tools.filter((item) =>
 		item.tags.some((tag) => tag.toLowerCase().includes(inclusiveMatchQuery.toLowerCase()))
 	);
 
-	return libraries;
+	return tools;
 }
 
-export async function filterLibraryData(
+export async function filterToolData(
 	textQuery: string,
 	tagQuery: string,
 	sectionTierQuery: string[]
 ) {
 	const data = await import('$lib/data.json');
-	let ongoingFilteredLibraries = data.evaluatedLibraries;
+	let ongoingFilteredTools = data.evaluatedTools;
 	let tagFilterFunction = filterTagsWithFinalQueryInclusiveMatching;
 
 	// first filter by sectionTier completion
@@ -120,8 +120,8 @@ export async function filterLibraryData(
 		sectionTierQuery.map((completedSectionTier) => {
 			const [completedSection, completedTier] = completedSectionTier.split('-');
 
-			ongoingFilteredLibraries = ongoingFilteredLibraries.filter((library) => {
-				const mostRecentEvaluation = getMostRecentEvaluation(library.evaluations);
+			ongoingFilteredTools = ongoingFilteredTools.filter((tool) => {
+				const mostRecentEvaluation = getMostRecentEvaluation(tool.evaluations);
 				const currentSectionTierItems =
 					// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 					// @ts-ignore - TS doesn't like the string-bracket-lookups here, but it works fine
@@ -142,19 +142,19 @@ export async function filterLibraryData(
 			.split(',')
 			.flatMap((tagQuery) => (tagQuery.trim() ? [tagQuery.trim()] : []));
 
-		ongoingFilteredLibraries = tagFilterFunction(ongoingFilteredLibraries, tagQueries);
+		ongoingFilteredTools = tagFilterFunction(ongoingFilteredTools, tagQueries);
 	}
 
 	// then filter by name
 	if (textQuery) {
-		ongoingFilteredLibraries = ongoingFilteredLibraries.filter(
+		ongoingFilteredTools = ongoingFilteredTools.filter(
 			(item) => item.name.toLowerCase().includes(textQuery.toLowerCase())
 			// @TODO: ask NMIND team if we also want to search by description:
 			// || item.description.toLowerCase().includes(textQuery.toLowerCase())
 		);
 	}
 
-	return ongoingFilteredLibraries;
+	return ongoingFilteredTools;
 }
 
 // Stolen with no apologies from
