@@ -55,3 +55,5 @@ export const sectionTierCompletionCheckboxData = [
 		value: 'documentation-gold'
 	}
 ];
+
+export const sortingKeys = ['Tool Name (A-Z)', 'Most-Recent Evaluation'];

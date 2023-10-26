@@ -1,5 +1,5 @@
 import tippy from 'tippy.js';
-
+import { sortingKeys } from '$lib/constants';
 import type { Evaluation, EvaluationSchema, Tool } from './types';
 import type { Props } from 'tippy.js/index.d.ts';
 
@@ -155,6 +155,24 @@ export async function filterToolData(
 	}
 
 	return ongoingFilteredTools;
+}
+
+export function sortFilteredData(filteredTools: Tool[], sortQuery: string) {
+	if (sortQuery === sortingKeys[0]) {
+		return filteredTools.sort((a, b) => a.name.localeCompare(b.name));
+	} else if (sortQuery === sortingKeys[1]) {
+		return filteredTools.sort((a, b) => {
+			// get most-recent evaluation for each tool
+			const aLatestEvaluation = a.evaluations.sort((e1, e2) => e2.date.localeCompare(e1.date))[0];
+			const bLatestEvaluation = b.evaluations.sort((e1, e2) => e2.date.localeCompare(e1.date))[0];
+
+			// compare the dates of the most-recent evaluations
+			return bLatestEvaluation.date.localeCompare(aLatestEvaluation.date);
+		});
+	} else {
+		// @todo: ask NMIND team if we want to add other sort-by options
+		return filteredTools;
+	}
 }
 
 // Stolen with no apologies from

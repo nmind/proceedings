@@ -1,24 +1,33 @@
 <script lang="ts">
-	import { sectionTierCompletionCheckboxData, allSectionTierNames } from '$lib/constants';
+	import {
+		sectionTierCompletionCheckboxData,
+		allSectionTierNames,
+		sortingKeys
+	} from '$lib/constants';
 	import type { Tool } from '$lib/types';
-	import { filterToolData, tooltip } from '$lib/utils';
+	import { filterToolData, sortFilteredData, tooltip } from '$lib/utils';
 
 	import ToolListviewCard from './ToolListviewCard.svelte';
 
 	let toolsPerPage = 5;
 	let currentPage = 1;
+
 	let searchQuery = '';
 	let metadataQuery = '';
+	let sortingQuery = sortingKeys[0];
 	let sectionTierQuery: string[] = [];
+
 	let filteredTools: Tool[] = [];
+	let sortedTools: Tool[] = [];
 	let paginatedTools: Tool[] = [];
 
 	$: filterToolData(searchQuery, metadataQuery, sectionTierQuery).then(
 		(response) => (filteredTools = response)
 	);
-	$: paginatefilteredData(filteredTools, currentPage);
+	$: sortedTools = sortFilteredData(filteredTools, sortingQuery);
+	$: paginateSortedData(sortedTools, currentPage);
 
-	async function paginatefilteredData(tools: Tool[], pageNumber: number) {
+	async function paginateSortedData(tools: Tool[], pageNumber: number) {
 		const toolStart = (pageNumber - 1) * toolsPerPage;
 		const toolEnd = pageNumber * toolsPerPage;
 		paginatedTools = tools.slice(toolStart, toolEnd);
@@ -143,7 +152,22 @@
 <hr class="mt-12" />
 
 {#if paginatedTools?.length}
-	<div class="sticky top-0 w-screen z-10 bg-white">
+	<div
+		class="sticky top-0 w-screen z-10 bg-white flex flex-col justify-center items-center lg:flex-row lg:justify-between"
+	>
+		<div class="flex flex-grow justify-start items-center ml-4">
+			<label for="sort-by" class="label">
+				<span class="label-text text-lg mr-4">Sort by:</span>
+			</label>
+			<select id="sort-by" bind:value={sortingQuery} class="select select-primary w-full max-w-xs">
+				{#each sortingKeys as sortingKey}
+					<option value={sortingKey}>
+						{sortingKey}
+					</option>
+				{/each}
+			</select>
+		</div>
+
 		<!-- The Tailwind values below are taken from the inverse of the <div> 
 			underneath the `Tool Icon && Details` comment inside 
 			`ToolListviewCard`, in order to maintain identical 

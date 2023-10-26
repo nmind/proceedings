@@ -1,554 +1,6 @@
 {
 	"evaluatedTools": [
 		{
-			"name": "3D Slicer",
-			"description": "3D Slicer is a free, open-source software package developed by the Surgical Planning Laboratory at the Harvard Medical School. It is primarily used for 3D visualization and analysis of medical images, making it particularly useful in neuroimaging studies. It supports a wide array of functionalities including image segmentation, registration, and 3D visualization.",
-			"urls": [
-				{
-					"text": "Home Page",
-					"href": "github.com/3d_slicer"
-				},
-				{
-					"text": "Documentation",
-					"href": "3d_slicer.com"
-				},
-				{
-					"text": "Source Code",
-					"href": "uclondon.edu/3d_slicer"
-				}
-			],
-			"maintainers": [
-				{
-					"name": "Elsie Hagenes",
-					"email": "elsiehagenes@foomail.mock",
-					"affiliation": "Yale University"
-				},
-				{
-					"name": "Irvin Prohaska",
-					"email": "irvinprohaska@foomail.mock",
-					"affiliation": "University of Sheffield"
-				},
-				{
-					"name": "Dr. Adam Upton",
-					"email": "dradamupton@foomail.mock",
-					"affiliation": "Johns Hopkins University"
-				},
-				{
-					"name": "Dominick Roob",
-					"email": "dominickroob@foomail.mock",
-					"affiliation": "Massachusetts Institute of Technology"
-				}
-			],
-			"evaluations": [
-				{
-					"checklistVersion": "1.1",
-					"toolVersion": "7.8.9",
-					"date": "2023-03-18",
-					"evaluatorEmail": "jclucas@nmind.mock",
-					"checklist": {
-						"testing": {
-							"bronze": {
-								"bronze_tst_1": true,
-								"bronze_tst_2": true
-							},
-							"silver": {
-								"silver_tst_1": false,
-								"silver_tst_2": true
-							},
-							"gold": {
-								"gold_tst_1": false,
-								"gold_tst_2": false
-							}
-						},
-						"infrastructure": {
-							"bronze": {
-								"bronze_inf_1": true,
-								"bronze_inf_2": true,
-								"bronze_inf_3": true,
-								"bronze_inf_4": true,
-								"bronze_inf_5": false,
-								"bronze_inf_6": true,
-								"bronze_inf_7": false
-							},
-							"silver": {
-								"silver_inf_1": false,
-								"silver_inf_2": true,
-								"silver_inf_3": true
-							},
-							"gold": {
-								"gold_inf_1": true,
-								"gold_inf_2": false,
-								"gold_inf_3": true,
-								"gold_inf_4": true,
-								"gold_inf_5": true
-							}
-						},
-						"documentation": {
-							"bronze": {
-								"bronze_doc_1": false,
-								"bronze_doc_2": true,
-								"bronze_doc_3": true,
-								"bronze_doc_4": false,
-								"bronze_doc_5": false,
-								"bronze_doc_6": false,
-								"bronze_doc_7": true,
-								"bronze_doc_8": true,
-								"bronze_doc_9": true
-							},
-							"silver": {
-								"silver_doc_1": true,
-								"silver_doc_2": true,
-								"silver_doc_3": true,
-								"silver_doc_4": false,
-								"silver_doc_5": true,
-								"silver_doc_6": true
-							},
-							"gold": {
-								"gold_doc_1": true,
-								"gold_doc_2": true,
-								"gold_doc_3": false,
-								"gold_doc_4": false,
-								"gold_doc_5": true,
-								"gold_doc_6": true
-							}
-						}
-					}
-				},
-				{
-					"checklistVersion": "1.1",
-					"toolVersion": "8.10.15",
-					"date": "2023-07-13",
-					"evaluatorEmail": "gkiar@nmind.mock",
-					"checklist": {
-						"testing": {
-							"bronze": {
-								"bronze_tst_1": false,
-								"bronze_tst_2": false
-							},
-							"silver": {
-								"silver_tst_1": false,
-								"silver_tst_2": false
-							},
-							"gold": {
-								"gold_tst_1": true,
-								"gold_tst_2": false
-							}
-						},
-						"infrastructure": {
-							"bronze": {
-								"bronze_inf_1": true,
-								"bronze_inf_2": true,
-								"bronze_inf_3": false,
-								"bronze_inf_4": false,
-								"bronze_inf_5": true,
-								"bronze_inf_6": true,
-								"bronze_inf_7": false
-							},
-							"silver": {
-								"silver_inf_1": false,
-								"silver_inf_2": false,
-								"silver_inf_3": true
-							},
-							"gold": {
-								"gold_inf_1": false,
-								"gold_inf_2": true,
-								"gold_inf_3": true,
-								"gold_inf_4": true,
-								"gold_inf_5": false
-							}
-						},
-						"documentation": {
-							"bronze": {
-								"bronze_doc_1": false,
-								"bronze_doc_2": false,
-								"bronze_doc_3": false,
-								"bronze_doc_4": false,
-								"bronze_doc_5": true,
-								"bronze_doc_6": false,
-								"bronze_doc_7": true,
-								"bronze_doc_8": true,
-								"bronze_doc_9": false
-							},
-							"silver": {
-								"silver_doc_1": false,
-								"silver_doc_2": false,
-								"silver_doc_3": true,
-								"silver_doc_4": true,
-								"silver_doc_5": false,
-								"silver_doc_6": true
-							},
-							"gold": {
-								"gold_doc_1": true,
-								"gold_doc_2": false,
-								"gold_doc_3": false,
-								"gold_doc_4": true,
-								"gold_doc_5": false,
-								"gold_doc_6": false
-							}
-						}
-					}
-				}
-			],
-			"slug": "3d-slicer",
-			"image": "brain_9_svgrepo_com--CadetBlue.png",
-			"tags": []
-		},
-		{
-			"name": "Amira",
-			"description": "Developed by Thermo Fisher Scientific, Amira is a 3D visualization and analysis software. It specializes in handling complex 3D models and has extensive applications in neuroscience for visualizing and analyzing brain structures.",
-			"urls": [
-				{
-					"text": "Source Code",
-					"href": "github.com/amira"
-				}
-			],
-			"maintainers": [
-				{
-					"name": "Sheila Mertz",
-					"email": "sheilamertz@foomail.mock",
-					"affiliation": "University of Nottingham"
-				},
-				{
-					"name": "Marta Osinski",
-					"email": "martaosinski@foomail.mock",
-					"affiliation": "Massachusetts Institute of Technology"
-				},
-				{
-					"name": "Andre Williamson",
-					"email": "andrewilliamson@foomail.mock",
-					"affiliation": "University of Lincoln"
-				},
-				{
-					"name": "Earnest Adams Jr.",
-					"email": "earnestadamsjr@foomail.mock",
-					"affiliation": "University of Reading"
-				}
-			],
-			"evaluations": [
-				{
-					"checklistVersion": "1.1",
-					"toolVersion": "9.0.6",
-					"date": "2023-06-30",
-					"evaluatorEmail": "gkiar@nmind.mock",
-					"checklist": {
-						"testing": {
-							"bronze": {
-								"bronze_tst_1": true,
-								"bronze_tst_2": true
-							},
-							"silver": {
-								"silver_tst_1": false,
-								"silver_tst_2": false
-							},
-							"gold": {
-								"gold_tst_1": true,
-								"gold_tst_2": true
-							}
-						},
-						"infrastructure": {
-							"bronze": {
-								"bronze_inf_1": false,
-								"bronze_inf_2": false,
-								"bronze_inf_3": false,
-								"bronze_inf_4": false,
-								"bronze_inf_5": false,
-								"bronze_inf_6": true,
-								"bronze_inf_7": true
-							},
-							"silver": {
-								"silver_inf_1": true,
-								"silver_inf_2": true,
-								"silver_inf_3": false
-							},
-							"gold": {
-								"gold_inf_1": false,
-								"gold_inf_2": true,
-								"gold_inf_3": false,
-								"gold_inf_4": false,
-								"gold_inf_5": true
-							}
-						},
-						"documentation": {
-							"bronze": {
-								"bronze_doc_1": true,
-								"bronze_doc_2": false,
-								"bronze_doc_3": false,
-								"bronze_doc_4": true,
-								"bronze_doc_5": false,
-								"bronze_doc_6": true,
-								"bronze_doc_7": false,
-								"bronze_doc_8": true,
-								"bronze_doc_9": true
-							},
-							"silver": {
-								"silver_doc_1": false,
-								"silver_doc_2": true,
-								"silver_doc_3": false,
-								"silver_doc_4": true,
-								"silver_doc_5": true,
-								"silver_doc_6": true
-							},
-							"gold": {
-								"gold_doc_1": true,
-								"gold_doc_2": false,
-								"gold_doc_3": false,
-								"gold_doc_4": false,
-								"gold_doc_5": false,
-								"gold_doc_6": false
-							}
-						}
-					}
-				}
-			],
-			"slug": "amira",
-			"image": "brain_9_svgrepo_com--DarkGray.png",
-			"tags": [
-				"numpy",
-				"data-science",
-				"reproducible-science",
-				"visualization",
-				"image-processing",
-				"mrs",
-				"neuroimaging"
-			]
-		},
-		{
-			"name": "Analysis of Functional NeuroImages (AFNI)",
-			"description": "AFNI is a software suite developed by the National Institute of Mental Health (NIMH) to analyze and visualize functional MRI data. It is particularly suitable for cognitive neuroscience research.",
-			"urls": [
-				{
-					"text": "Source Code",
-					"href": "princeton.edu/analysis_of_functional_neuroimages"
-				}
-			],
-			"maintainers": [
-				{
-					"name": "Phillip Schuster",
-					"email": "phillipschuster@foomail.mock",
-					"affiliation": "University of California, Santa Barbara"
-				},
-				{
-					"name": "Ms. Sophia Tillman",
-					"email": "mssophiatillman@foomail.mock",
-					"affiliation": "University of California, Santa Barbara"
-				},
-				{
-					"name": "Mitchell Bode-Purdy",
-					"email": "mitchellbodepurdy@foomail.mock",
-					"affiliation": "University of Southampton"
-				},
-				{
-					"name": "Theodore Wisozk PhD",
-					"email": "theodorewisozkphd@foomail.mock",
-					"affiliation": "University of California, Riverside"
-				},
-				{
-					"name": "Byron Cremin",
-					"email": "byroncremin@foomail.mock",
-					"affiliation": "University of Sussex"
-				},
-				{
-					"name": "Patti Pagac",
-					"email": "pattipagac@foomail.mock",
-					"affiliation": "University of Wolverhampton"
-				}
-			],
-			"evaluations": [
-				{
-					"checklistVersion": "1.1",
-					"toolVersion": "3.6.3",
-					"date": "2022-08-28",
-					"evaluatorEmail": "jclucas@nmind.mock",
-					"checklist": {
-						"testing": {
-							"bronze": {
-								"bronze_tst_1": true,
-								"bronze_tst_2": false
-							},
-							"silver": {
-								"silver_tst_1": true,
-								"silver_tst_2": true
-							},
-							"gold": {
-								"gold_tst_1": true,
-								"gold_tst_2": true
-							}
-						},
-						"infrastructure": {
-							"bronze": {
-								"bronze_inf_1": true,
-								"bronze_inf_2": false,
-								"bronze_inf_3": false,
-								"bronze_inf_4": false,
-								"bronze_inf_5": true,
-								"bronze_inf_6": false,
-								"bronze_inf_7": false
-							},
-							"silver": {
-								"silver_inf_1": false,
-								"silver_inf_2": true,
-								"silver_inf_3": false
-							},
-							"gold": {
-								"gold_inf_1": false,
-								"gold_inf_2": true,
-								"gold_inf_3": false,
-								"gold_inf_4": true,
-								"gold_inf_5": false
-							}
-						},
-						"documentation": {
-							"bronze": {
-								"bronze_doc_1": false,
-								"bronze_doc_2": false,
-								"bronze_doc_3": true,
-								"bronze_doc_4": false,
-								"bronze_doc_5": true,
-								"bronze_doc_6": true,
-								"bronze_doc_7": false,
-								"bronze_doc_8": true,
-								"bronze_doc_9": true
-							},
-							"silver": {
-								"silver_doc_1": false,
-								"silver_doc_2": false,
-								"silver_doc_3": true,
-								"silver_doc_4": false,
-								"silver_doc_5": false,
-								"silver_doc_6": false
-							},
-							"gold": {
-								"gold_doc_1": false,
-								"gold_doc_2": true,
-								"gold_doc_3": false,
-								"gold_doc_4": true,
-								"gold_doc_5": false,
-								"gold_doc_6": false
-							}
-						}
-					}
-				}
-			],
-			"slug": "analysis-of-functional-neuroimages-afni",
-			"image": "brain_9_svgrepo_com--Crimson.png",
-			"tags": ["fsl", "image-registration", "converter"]
-		},
-		{
-			"name": "Analyze",
-			"description": "Created by the Biomedical Imaging Resource (BIR) at Mayo Clinic, Analyze is a software application used for visualization and analysis in biomedical imaging, including neuroimaging.",
-			"urls": [
-				{
-					"text": "Source Code",
-					"href": "github.com/analyze"
-				},
-				{
-					"text": "Documentation",
-					"href": "analyze.com"
-				}
-			],
-			"maintainers": [
-				{
-					"name": "Eunice Hayes",
-					"email": "eunicehayes@foomail.mock",
-					"affiliation": "University of Melbourne"
-				},
-				{
-					"name": "Janis Kautzer",
-					"email": "janiskautzer@foomail.mock",
-					"affiliation": "Yale University"
-				},
-				{
-					"name": "Heidi Reilly-Reichert DDS",
-					"email": "heidireillyreichertdds@foomail.mock",
-					"affiliation": "University of Chicago"
-				},
-				{
-					"name": "Stella Brekke",
-					"email": "stellabrekke@foomail.mock",
-					"affiliation": "University of California, Santa Barbara"
-				}
-			],
-			"evaluations": [
-				{
-					"checklistVersion": "1.1",
-					"toolVersion": "1.6.9",
-					"date": "2022-06-19",
-					"evaluatorEmail": "jclucas@nmind.mock",
-					"checklist": {
-						"testing": {
-							"bronze": {
-								"bronze_tst_1": false,
-								"bronze_tst_2": true
-							},
-							"silver": {
-								"silver_tst_1": true,
-								"silver_tst_2": true
-							},
-							"gold": {
-								"gold_tst_1": true,
-								"gold_tst_2": true
-							}
-						},
-						"infrastructure": {
-							"bronze": {
-								"bronze_inf_1": false,
-								"bronze_inf_2": true,
-								"bronze_inf_3": true,
-								"bronze_inf_4": true,
-								"bronze_inf_5": true,
-								"bronze_inf_6": false,
-								"bronze_inf_7": false
-							},
-							"silver": {
-								"silver_inf_1": false,
-								"silver_inf_2": true,
-								"silver_inf_3": false
-							},
-							"gold": {
-								"gold_inf_1": false,
-								"gold_inf_2": true,
-								"gold_inf_3": true,
-								"gold_inf_4": true,
-								"gold_inf_5": false
-							}
-						},
-						"documentation": {
-							"bronze": {
-								"bronze_doc_1": false,
-								"bronze_doc_2": false,
-								"bronze_doc_3": false,
-								"bronze_doc_4": false,
-								"bronze_doc_5": false,
-								"bronze_doc_6": false,
-								"bronze_doc_7": true,
-								"bronze_doc_8": true,
-								"bronze_doc_9": false
-							},
-							"silver": {
-								"silver_doc_1": false,
-								"silver_doc_2": true,
-								"silver_doc_3": true,
-								"silver_doc_4": true,
-								"silver_doc_5": false,
-								"silver_doc_6": false
-							},
-							"gold": {
-								"gold_doc_1": false,
-								"gold_doc_2": false,
-								"gold_doc_3": false,
-								"gold_doc_4": false,
-								"gold_doc_5": true,
-								"gold_doc_6": false
-							}
-						}
-					}
-				}
-			],
-			"slug": "analyze",
-			"image": "brain_9_svgrepo_com--LightSlateGray.png",
-			"tags": ["bids-format"]
-		},
-		{
 			"name": "Brain Image Analysis Package",
 			"description": "This software package, developed by a team of neuroscientists at Johns Hopkins University, focuses on detailed analysis of brain images. It uses advanced algorithms for image processing, making it suitable for research that requires high precision.",
 			"urls": [
@@ -1069,6 +521,199 @@
 			"slug": "conn",
 			"image": "brain_9_svgrepo_com--MediumSlateBlue.png",
 			"tags": ["png", "fmri", "brainweb"]
+		},
+		{
+			"name": "3D Slicer",
+			"description": "3D Slicer is a free, open-source software package developed by the Surgical Planning Laboratory at the Harvard Medical School. It is primarily used for 3D visualization and analysis of medical images, making it particularly useful in neuroimaging studies. It supports a wide array of functionalities including image segmentation, registration, and 3D visualization.",
+			"urls": [
+				{
+					"text": "Home Page",
+					"href": "github.com/3d_slicer"
+				},
+				{
+					"text": "Documentation",
+					"href": "3d_slicer.com"
+				},
+				{
+					"text": "Source Code",
+					"href": "uclondon.edu/3d_slicer"
+				}
+			],
+			"maintainers": [
+				{
+					"name": "Elsie Hagenes",
+					"email": "elsiehagenes@foomail.mock",
+					"affiliation": "Yale University"
+				},
+				{
+					"name": "Irvin Prohaska",
+					"email": "irvinprohaska@foomail.mock",
+					"affiliation": "University of Sheffield"
+				},
+				{
+					"name": "Dr. Adam Upton",
+					"email": "dradamupton@foomail.mock",
+					"affiliation": "Johns Hopkins University"
+				},
+				{
+					"name": "Dominick Roob",
+					"email": "dominickroob@foomail.mock",
+					"affiliation": "Massachusetts Institute of Technology"
+				}
+			],
+			"evaluations": [
+				{
+					"checklistVersion": "1.1",
+					"toolVersion": "7.8.9",
+					"date": "2023-03-18",
+					"evaluatorEmail": "jclucas@nmind.mock",
+					"checklist": {
+						"testing": {
+							"bronze": {
+								"bronze_tst_1": true,
+								"bronze_tst_2": true
+							},
+							"silver": {
+								"silver_tst_1": false,
+								"silver_tst_2": true
+							},
+							"gold": {
+								"gold_tst_1": false,
+								"gold_tst_2": false
+							}
+						},
+						"infrastructure": {
+							"bronze": {
+								"bronze_inf_1": true,
+								"bronze_inf_2": true,
+								"bronze_inf_3": true,
+								"bronze_inf_4": true,
+								"bronze_inf_5": false,
+								"bronze_inf_6": true,
+								"bronze_inf_7": false
+							},
+							"silver": {
+								"silver_inf_1": false,
+								"silver_inf_2": true,
+								"silver_inf_3": true
+							},
+							"gold": {
+								"gold_inf_1": true,
+								"gold_inf_2": false,
+								"gold_inf_3": true,
+								"gold_inf_4": true,
+								"gold_inf_5": true
+							}
+						},
+						"documentation": {
+							"bronze": {
+								"bronze_doc_1": false,
+								"bronze_doc_2": true,
+								"bronze_doc_3": true,
+								"bronze_doc_4": false,
+								"bronze_doc_5": false,
+								"bronze_doc_6": false,
+								"bronze_doc_7": true,
+								"bronze_doc_8": true,
+								"bronze_doc_9": true
+							},
+							"silver": {
+								"silver_doc_1": true,
+								"silver_doc_2": true,
+								"silver_doc_3": true,
+								"silver_doc_4": false,
+								"silver_doc_5": true,
+								"silver_doc_6": true
+							},
+							"gold": {
+								"gold_doc_1": true,
+								"gold_doc_2": true,
+								"gold_doc_3": false,
+								"gold_doc_4": false,
+								"gold_doc_5": true,
+								"gold_doc_6": true
+							}
+						}
+					}
+				},
+				{
+					"checklistVersion": "1.1",
+					"toolVersion": "8.10.15",
+					"date": "2023-07-13",
+					"evaluatorEmail": "gkiar@nmind.mock",
+					"checklist": {
+						"testing": {
+							"bronze": {
+								"bronze_tst_1": false,
+								"bronze_tst_2": false
+							},
+							"silver": {
+								"silver_tst_1": false,
+								"silver_tst_2": false
+							},
+							"gold": {
+								"gold_tst_1": true,
+								"gold_tst_2": false
+							}
+						},
+						"infrastructure": {
+							"bronze": {
+								"bronze_inf_1": true,
+								"bronze_inf_2": true,
+								"bronze_inf_3": false,
+								"bronze_inf_4": false,
+								"bronze_inf_5": true,
+								"bronze_inf_6": true,
+								"bronze_inf_7": false
+							},
+							"silver": {
+								"silver_inf_1": false,
+								"silver_inf_2": false,
+								"silver_inf_3": true
+							},
+							"gold": {
+								"gold_inf_1": false,
+								"gold_inf_2": true,
+								"gold_inf_3": true,
+								"gold_inf_4": true,
+								"gold_inf_5": false
+							}
+						},
+						"documentation": {
+							"bronze": {
+								"bronze_doc_1": false,
+								"bronze_doc_2": false,
+								"bronze_doc_3": false,
+								"bronze_doc_4": false,
+								"bronze_doc_5": true,
+								"bronze_doc_6": false,
+								"bronze_doc_7": true,
+								"bronze_doc_8": true,
+								"bronze_doc_9": false
+							},
+							"silver": {
+								"silver_doc_1": false,
+								"silver_doc_2": false,
+								"silver_doc_3": true,
+								"silver_doc_4": true,
+								"silver_doc_5": false,
+								"silver_doc_6": true
+							},
+							"gold": {
+								"gold_doc_1": true,
+								"gold_doc_2": false,
+								"gold_doc_3": false,
+								"gold_doc_4": true,
+								"gold_doc_5": false,
+								"gold_doc_6": false
+							}
+						}
+					}
+				}
+			],
+			"slug": "3d-slicer",
+			"image": "brain_9_svgrepo_com--CadetBlue.png",
+			"tags": []
 		},
 		{
 			"name": "Diffusion Imaging in Python (DIPY)",
@@ -6752,6 +6397,361 @@
 			"slug": "verbena",
 			"image": "brain_9_svgrepo_com--MediumTurquoise.png",
 			"tags": ["topological-data-analysis"]
+		},
+		{
+			"name": "Amira",
+			"description": "Developed by Thermo Fisher Scientific, Amira is a 3D visualization and analysis software. It specializes in handling complex 3D models and has extensive applications in neuroscience for visualizing and analyzing brain structures.",
+			"urls": [
+				{
+					"text": "Source Code",
+					"href": "github.com/amira"
+				}
+			],
+			"maintainers": [
+				{
+					"name": "Sheila Mertz",
+					"email": "sheilamertz@foomail.mock",
+					"affiliation": "University of Nottingham"
+				},
+				{
+					"name": "Marta Osinski",
+					"email": "martaosinski@foomail.mock",
+					"affiliation": "Massachusetts Institute of Technology"
+				},
+				{
+					"name": "Andre Williamson",
+					"email": "andrewilliamson@foomail.mock",
+					"affiliation": "University of Lincoln"
+				},
+				{
+					"name": "Earnest Adams Jr.",
+					"email": "earnestadamsjr@foomail.mock",
+					"affiliation": "University of Reading"
+				}
+			],
+			"evaluations": [
+				{
+					"checklistVersion": "1.1",
+					"toolVersion": "9.0.6",
+					"date": "2023-06-30",
+					"evaluatorEmail": "gkiar@nmind.mock",
+					"checklist": {
+						"testing": {
+							"bronze": {
+								"bronze_tst_1": true,
+								"bronze_tst_2": true
+							},
+							"silver": {
+								"silver_tst_1": false,
+								"silver_tst_2": false
+							},
+							"gold": {
+								"gold_tst_1": true,
+								"gold_tst_2": true
+							}
+						},
+						"infrastructure": {
+							"bronze": {
+								"bronze_inf_1": false,
+								"bronze_inf_2": false,
+								"bronze_inf_3": false,
+								"bronze_inf_4": false,
+								"bronze_inf_5": false,
+								"bronze_inf_6": true,
+								"bronze_inf_7": true
+							},
+							"silver": {
+								"silver_inf_1": true,
+								"silver_inf_2": true,
+								"silver_inf_3": false
+							},
+							"gold": {
+								"gold_inf_1": false,
+								"gold_inf_2": true,
+								"gold_inf_3": false,
+								"gold_inf_4": false,
+								"gold_inf_5": true
+							}
+						},
+						"documentation": {
+							"bronze": {
+								"bronze_doc_1": true,
+								"bronze_doc_2": false,
+								"bronze_doc_3": false,
+								"bronze_doc_4": true,
+								"bronze_doc_5": false,
+								"bronze_doc_6": true,
+								"bronze_doc_7": false,
+								"bronze_doc_8": true,
+								"bronze_doc_9": true
+							},
+							"silver": {
+								"silver_doc_1": false,
+								"silver_doc_2": true,
+								"silver_doc_3": false,
+								"silver_doc_4": true,
+								"silver_doc_5": true,
+								"silver_doc_6": true
+							},
+							"gold": {
+								"gold_doc_1": true,
+								"gold_doc_2": false,
+								"gold_doc_3": false,
+								"gold_doc_4": false,
+								"gold_doc_5": false,
+								"gold_doc_6": false
+							}
+						}
+					}
+				}
+			],
+			"slug": "amira",
+			"image": "brain_9_svgrepo_com--DarkGray.png",
+			"tags": [
+				"numpy",
+				"data-science",
+				"reproducible-science",
+				"visualization",
+				"image-processing",
+				"mrs",
+				"neuroimaging"
+			]
+		},
+		{
+			"name": "Analysis of Functional NeuroImages (AFNI)",
+			"description": "AFNI is a software suite developed by the National Institute of Mental Health (NIMH) to analyze and visualize functional MRI data. It is particularly suitable for cognitive neuroscience research.",
+			"urls": [
+				{
+					"text": "Source Code",
+					"href": "princeton.edu/analysis_of_functional_neuroimages"
+				}
+			],
+			"maintainers": [
+				{
+					"name": "Phillip Schuster",
+					"email": "phillipschuster@foomail.mock",
+					"affiliation": "University of California, Santa Barbara"
+				},
+				{
+					"name": "Ms. Sophia Tillman",
+					"email": "mssophiatillman@foomail.mock",
+					"affiliation": "University of California, Santa Barbara"
+				},
+				{
+					"name": "Mitchell Bode-Purdy",
+					"email": "mitchellbodepurdy@foomail.mock",
+					"affiliation": "University of Southampton"
+				},
+				{
+					"name": "Theodore Wisozk PhD",
+					"email": "theodorewisozkphd@foomail.mock",
+					"affiliation": "University of California, Riverside"
+				},
+				{
+					"name": "Byron Cremin",
+					"email": "byroncremin@foomail.mock",
+					"affiliation": "University of Sussex"
+				},
+				{
+					"name": "Patti Pagac",
+					"email": "pattipagac@foomail.mock",
+					"affiliation": "University of Wolverhampton"
+				}
+			],
+			"evaluations": [
+				{
+					"checklistVersion": "1.1",
+					"toolVersion": "3.6.3",
+					"date": "2022-08-28",
+					"evaluatorEmail": "jclucas@nmind.mock",
+					"checklist": {
+						"testing": {
+							"bronze": {
+								"bronze_tst_1": true,
+								"bronze_tst_2": false
+							},
+							"silver": {
+								"silver_tst_1": true,
+								"silver_tst_2": true
+							},
+							"gold": {
+								"gold_tst_1": true,
+								"gold_tst_2": true
+							}
+						},
+						"infrastructure": {
+							"bronze": {
+								"bronze_inf_1": true,
+								"bronze_inf_2": false,
+								"bronze_inf_3": false,
+								"bronze_inf_4": false,
+								"bronze_inf_5": true,
+								"bronze_inf_6": false,
+								"bronze_inf_7": false
+							},
+							"silver": {
+								"silver_inf_1": false,
+								"silver_inf_2": true,
+								"silver_inf_3": false
+							},
+							"gold": {
+								"gold_inf_1": false,
+								"gold_inf_2": true,
+								"gold_inf_3": false,
+								"gold_inf_4": true,
+								"gold_inf_5": false
+							}
+						},
+						"documentation": {
+							"bronze": {
+								"bronze_doc_1": false,
+								"bronze_doc_2": false,
+								"bronze_doc_3": true,
+								"bronze_doc_4": false,
+								"bronze_doc_5": true,
+								"bronze_doc_6": true,
+								"bronze_doc_7": false,
+								"bronze_doc_8": true,
+								"bronze_doc_9": true
+							},
+							"silver": {
+								"silver_doc_1": false,
+								"silver_doc_2": false,
+								"silver_doc_3": true,
+								"silver_doc_4": false,
+								"silver_doc_5": false,
+								"silver_doc_6": false
+							},
+							"gold": {
+								"gold_doc_1": false,
+								"gold_doc_2": true,
+								"gold_doc_3": false,
+								"gold_doc_4": true,
+								"gold_doc_5": false,
+								"gold_doc_6": false
+							}
+						}
+					}
+				}
+			],
+			"slug": "analysis-of-functional-neuroimages-afni",
+			"image": "brain_9_svgrepo_com--Crimson.png",
+			"tags": ["fsl", "image-registration", "converter"]
+		},
+		{
+			"name": "Analyze",
+			"description": "Created by the Biomedical Imaging Resource (BIR) at Mayo Clinic, Analyze is a software application used for visualization and analysis in biomedical imaging, including neuroimaging.",
+			"urls": [
+				{
+					"text": "Source Code",
+					"href": "github.com/analyze"
+				},
+				{
+					"text": "Documentation",
+					"href": "analyze.com"
+				}
+			],
+			"maintainers": [
+				{
+					"name": "Eunice Hayes",
+					"email": "eunicehayes@foomail.mock",
+					"affiliation": "University of Melbourne"
+				},
+				{
+					"name": "Janis Kautzer",
+					"email": "janiskautzer@foomail.mock",
+					"affiliation": "Yale University"
+				},
+				{
+					"name": "Heidi Reilly-Reichert DDS",
+					"email": "heidireillyreichertdds@foomail.mock",
+					"affiliation": "University of Chicago"
+				},
+				{
+					"name": "Stella Brekke",
+					"email": "stellabrekke@foomail.mock",
+					"affiliation": "University of California, Santa Barbara"
+				}
+			],
+			"evaluations": [
+				{
+					"checklistVersion": "1.1",
+					"toolVersion": "1.6.9",
+					"date": "2022-06-19",
+					"evaluatorEmail": "jclucas@nmind.mock",
+					"checklist": {
+						"testing": {
+							"bronze": {
+								"bronze_tst_1": false,
+								"bronze_tst_2": true
+							},
+							"silver": {
+								"silver_tst_1": true,
+								"silver_tst_2": true
+							},
+							"gold": {
+								"gold_tst_1": true,
+								"gold_tst_2": true
+							}
+						},
+						"infrastructure": {
+							"bronze": {
+								"bronze_inf_1": false,
+								"bronze_inf_2": true,
+								"bronze_inf_3": true,
+								"bronze_inf_4": true,
+								"bronze_inf_5": true,
+								"bronze_inf_6": false,
+								"bronze_inf_7": false
+							},
+							"silver": {
+								"silver_inf_1": false,
+								"silver_inf_2": true,
+								"silver_inf_3": false
+							},
+							"gold": {
+								"gold_inf_1": false,
+								"gold_inf_2": true,
+								"gold_inf_3": true,
+								"gold_inf_4": true,
+								"gold_inf_5": false
+							}
+						},
+						"documentation": {
+							"bronze": {
+								"bronze_doc_1": false,
+								"bronze_doc_2": false,
+								"bronze_doc_3": false,
+								"bronze_doc_4": false,
+								"bronze_doc_5": false,
+								"bronze_doc_6": false,
+								"bronze_doc_7": true,
+								"bronze_doc_8": true,
+								"bronze_doc_9": false
+							},
+							"silver": {
+								"silver_doc_1": false,
+								"silver_doc_2": true,
+								"silver_doc_3": true,
+								"silver_doc_4": true,
+								"silver_doc_5": false,
+								"silver_doc_6": false
+							},
+							"gold": {
+								"gold_doc_1": false,
+								"gold_doc_2": false,
+								"gold_doc_3": false,
+								"gold_doc_4": false,
+								"gold_doc_5": true,
+								"gold_doc_6": false
+							}
+						}
+					}
+				}
+			],
+			"slug": "analyze",
+			"image": "brain_9_svgrepo_com--LightSlateGray.png",
+			"tags": ["bids-format"]
 		},
 		{
 			"name": "BET",
