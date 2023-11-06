@@ -5,7 +5,7 @@
 
 	export let data: Tool;
 
-	let sortedEvaluations = sortEvaluationsByDate(data?.evaluations);
+	let sortedEvaluations = sortEvaluationsByDate(data?.evaluations ? data.evaluations : []);
 	let [mostRecentEvaluation, ...priorEvaluations] = sortedEvaluations;
 	let selectedOption: Evaluation[] = [];
 </script>

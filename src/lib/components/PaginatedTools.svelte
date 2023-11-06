@@ -78,7 +78,7 @@
 			</label>
 			<input
 				type="text"
-				placeholder="Enter tool name"
+				placeholder="Enter tool name/description"
 				bind:value={searchQuery}
 				on:focus={() => changePage(1)}
 				class="input input-bordered input-primary w-full max-w-xs"

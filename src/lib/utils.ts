@@ -148,9 +148,9 @@ export async function filterToolData(
 	// then filter by name
 	if (textQuery) {
 		ongoingFilteredTools = ongoingFilteredTools.filter(
-			(item) => item.name.toLowerCase().includes(textQuery.toLowerCase())
-			// @TODO: ask NMIND team if we also want to search by description:
-			// || item.description.toLowerCase().includes(textQuery.toLowerCase())
+			(item) =>
+				item.name.toLowerCase().includes(textQuery.toLowerCase()) ||
+				item.description.toLowerCase().includes(textQuery.toLowerCase())
 		);
 	}
 
