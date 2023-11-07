@@ -3,7 +3,7 @@ import { sortingKeys } from '$lib/constants';
 import type { Evaluation, EvaluationSchema, Tool } from './types';
 import type { Props } from 'tippy.js/index.d.ts';
 
-import data from './data.json';
+import data from '$lib/data/concat_data.json';
 
 export function sortEvaluationsByDate(arr: Evaluation[]) {
 	return arr.sort((a, b) => {
@@ -111,7 +111,6 @@ export async function filterToolData(
 	tagQuery: string,
 	sectionTierQuery: string[]
 ) {
-	const data = await import('$lib/data.json');
 	let ongoingFilteredTools = data.evaluatedTools;
 	let tagFilterFunction = filterTagsWithFinalQueryInclusiveMatching;
 

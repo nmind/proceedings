@@ -121,3 +121,5 @@ export interface EvaluationItemData {
 	prompt: string;
 	value: boolean;
 }
+
+export type DataArray = Tool[] | Evaluation[];
