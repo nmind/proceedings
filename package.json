@@ -8,7 +8,7 @@
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"build_test_fixtures": "node src/lib/data/concatenate_data.js test/fixtures/evaluatedTools test/fixtures/evaluationSchemas src/lib/data/concat_data.json",
+		"build_test_fixtures": "node src/lib/data/concatenate_data.js tests/fixtures/evaluatedTools tests/fixtures/evaluationSchemas src/lib/data/concat_data.json",
 		"test": "vitest",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "prettier --plugin-search-dir . --write ."
