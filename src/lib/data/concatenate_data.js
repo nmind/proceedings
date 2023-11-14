@@ -7,45 +7,52 @@
 
 import { promises } from 'fs';
 import { join } from 'path';
-// import type { DataArray } from '../types';
+
+// Retrieve command line arguments
+const args = process.argv.slice(2);
+
+if (args.length < 2) {
+    console.error('Please provide paths for evaluatedTools and evaluationSchemas as command line arguments.');
+    process.exit(1);
+}
+
+const [evaluatedToolsPath, evaluationSchemasPath] = args;
 
 const directories = {
-	evaluatedTools: 'src/lib/data/evaluatedTools',
-	evaluationSchemas: 'src/lib/data/evaluationSchemas'
+    evaluatedTools: evaluatedToolsPath,
+    evaluationSchemas: evaluationSchemasPath
 };
 
-// async function readDirectoryData(dirPath: string) {
 async function readDirectoryData(dirPath) {
-	const files = await promises.readdir(dirPath);
-	const jsonFiles = files.filter((file) => file.endsWith('.json'));
+    const files = await promises.readdir(dirPath);
+    const jsonFiles = files.filter((file) => file.endsWith('.json'));
 
-	return Promise.all(
-		jsonFiles.map(async (file) => {
-			const filePath = join(dirPath, file);
-			try {
-				const fileContents = await promises.readFile(filePath, 'utf8');
-				return JSON.parse(fileContents);
-			} catch (error) {
-				console.error(`Error reading file ${filePath}:`, error.message);
-				throw error; // rethrow the error to catch it in the outer scope
-			}
-		})
-	);
+    return Promise.all(
+        jsonFiles.map(async (file) => {
+            const filePath = join(dirPath, file);
+            try {
+                const fileContents = await promises.readFile(filePath, 'utf8');
+                return JSON.parse(fileContents);
+            } catch (error) {
+                console.error(`Error reading file ${filePath}:`, error.message);
+                throw error;
+            }
+        })
+    );
 }
 
 async function generateData() {
-	// const data: Record<string, DataArray> = {};
-	const data = {};
+    const data = {};
 
-	for (const [key, dirPath] of Object.entries(directories)) {
-		data[key] = await readDirectoryData(dirPath);
-	}
+    for (const [key, dirPath] of Object.entries(directories)) {
+        data[key] = await readDirectoryData(dirPath);
+    }
 
-	await promises.writeFile('./concat_data.json', JSON.stringify(data, null, 2));
-	console.log('Generated concat_data.json successfully.');
+    await promises.writeFile('./concat_data.json', JSON.stringify(data, null, 2));
+    console.log('Generated concat_data.json successfully.');
 }
 
 generateData().catch((err) => {
-	console.error('Failed to generate concat_data.json:', err);
-	process.exit(1);
+    console.error('Failed to generate concat_data.json:', err);
+    process.exit(1);
 });
