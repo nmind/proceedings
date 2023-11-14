@@ -16,7 +16,7 @@ if (args.length < 2) {
     process.exit(1);
 }
 
-const [evaluatedToolsPath, evaluationSchemasPath] = args;
+const [evaluatedToolsPath, evaluationSchemasPath, outputPath] = args;
 
 const directories = {
     evaluatedTools: evaluatedToolsPath,
@@ -48,7 +48,7 @@ async function generateData() {
         data[key] = await readDirectoryData(dirPath);
     }
 
-    await promises.writeFile('./concat_data.json', JSON.stringify(data, null, 2));
+    await promises.writeFile(outputPath, JSON.stringify(data, null, 2));
     console.log('Generated concat_data.json successfully.');
 }
 
