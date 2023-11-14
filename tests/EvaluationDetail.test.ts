@@ -1,42 +1,36 @@
 import { render } from '@testing-library/svelte';
-import { test } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import EvaluationDetail from '../src/lib/components/EvaluationDetail.svelte';
+import data from '../tests/fixtures/evaluatedTools/3d-slicer.json';
 
-test('renders evaluation detail', async () => {
-  const { getByText } = render(EvaluationDetail, {
-    props: {
-      evaluation: {
-        id: 1,
-        name: 'Test Evaluation',
-        description: 'This is a test evaluation',
-        questions: [
-          {
-            id: 1,
-            text: 'Question 1',
-            options: [
-              { id: 1, text: 'Option 1' },
-              { id: 2, text: 'Option 2' },
-            ],
-          },
-          {
-            id: 2,
-            text: 'Question 2',
-            options: [
-              { id: 3, text: 'Option 3' },
-              { id: 4, text: 'Option 4' },
-            ],
-          },
-        ],
-      },
-    },
-  });
+describe('EvaluationDetail Component', () => {
+	it('renders the evaluation overview', () => {
+		const { getByText } = render(EvaluationDetail, {
+			props: {
+				evaluation: data.evaluations[0]
+			}
+		});
+		expect(getByText('Checklist Version:')).toBeDefined();
+		expect(getByText(data.evaluations[0].checklistVersion)).toBeDefined();
+		expect(getByText('Tool Version:')).toBeDefined();
+		expect(getByText(data.evaluations[0].toolVersion)).toBeDefined();
+		expect(getByText('Date:')).toBeDefined();
+		expect(getByText(data.evaluations[0].date)).toBeDefined();
+		expect(getByText('Evaluator:')).toBeDefined();
+		expect(getByText(data.evaluations[0].evaluatorEmail)).toBeDefined();
+	});
 
-  expect(getByText('Test Evaluation')).toBeInTheDocument();
-  expect(getByText('This is a test evaluation')).toBeInTheDocument();
-  expect(getByText('Question 1')).toBeInTheDocument();
-  expect(getByText('Option 1')).toBeInTheDocument();
-  expect(getByText('Option 2')).toBeInTheDocument();
-  expect(getByText('Question 2')).toBeInTheDocument();
-  expect(getByText('Option 3')).toBeInTheDocument();
-  expect(getByText('Option 4')).toBeInTheDocument();
+	it('renders the evaluation checklist', () => {
+		const { getAllByText } = render(EvaluationDetail, {
+			props: {
+				evaluation: data.evaluations[0]
+			}
+		});
+		expect(getAllByText('Testing')).length === 3;
+		expect(getAllByText('Infrastructure')).length === 3;
+		expect(getAllByText('Documentation')).length === 3;
+		expect(getAllByText('Bronze Tier')).length === 3;
+		expect(getAllByText('Silver Tier')).length === 3;
+		expect(getAllByText('Gold Tier')).length === 3;
+	});
 });
