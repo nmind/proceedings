@@ -70,11 +70,11 @@ export function mungeChecklistSectionTier(
 export function findEvaluationSchemaByVersion(arr: EvaluationSchema[], version: number) {
 	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 	// @ts-ignore - TS doesn't like the string-bracket-lookups here, but it works fine
-	return arr.find((item) => item['@context']['@version'] === version);
+	return arr.find((item) => item['@context']['@version'] === version) ?? null;
 }
 
 export function getToolUrlByTextDescriptor(tool: Tool, urlText: string) {
-	return tool.urls.find((url: Record<string, string>) => url.text === urlText);
+	return tool.urls.find((url: Record<string, string>) => url.text === urlText) ?? null;
 }
 
 function filterTagsByExactQueryMatchesOnly(tools: Tool[], tagQueries: string[]) {
