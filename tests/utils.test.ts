@@ -1,5 +1,5 @@
 import { cleanup } from '@testing-library/svelte';
-import { describe, it, expect, afterEach, vi } from 'vitest';
+import { describe, it, expect, afterEach } from 'vitest';
 import {
 	sortEvaluationsByDate,
 	getMostRecentEvaluation,
