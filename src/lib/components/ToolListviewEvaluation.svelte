@@ -1,6 +1,7 @@
 <script lang="ts">
 	import EvaluationShieldIcon from './EvaluationShieldIcon.svelte';
 	import { getCompletionFractionFromSectionTier, mungeChecklistSectionTier } from '$lib/utils';
+	import { fillColors } from "$lib/constants";
 	import type { Checklist } from '$lib/types';
 
 	export let checklist: Checklist;
@@ -11,7 +12,7 @@
 	<!-- Testing -->
 	<div class="h-20 w-56 pr-8 flex">
 		<EvaluationShieldIcon
-			fillColor="#CD7F32"
+			fillColor={fillColors.bronze}
 			sectionTierCompletionFraction={getCompletionFractionFromSectionTier(checklist.testing.bronze)}
 			sectionTierCompletionEvidence={mungeChecklistSectionTier(
 				checklist.testing.bronze,
@@ -19,7 +20,7 @@
 			)}
 		/>
 		<EvaluationShieldIcon
-			fillColor="#1C274C"
+			fillColor={fillColors.silver}
 			sectionTierCompletionFraction={getCompletionFractionFromSectionTier(checklist.testing.silver)}
 			sectionTierCompletionEvidence={mungeChecklistSectionTier(
 				checklist.testing.silver,
@@ -27,7 +28,7 @@
 			)}
 		/>
 		<EvaluationShieldIcon
-			fillColor="#FFD700"
+			fillColor={fillColors.gold}
 			sectionTierCompletionFraction={getCompletionFractionFromSectionTier(checklist.testing.gold)}
 			sectionTierCompletionEvidence={mungeChecklistSectionTier(
 				checklist.testing.gold,
@@ -39,7 +40,7 @@
 	<!-- Infrastructure -->
 	<div class="h-20 w-56 pr-8 flex">
 		<EvaluationShieldIcon
-			fillColor="#CD7F32"
+			fillColor={fillColors.bronze}
 			sectionTierCompletionFraction={getCompletionFractionFromSectionTier(
 				checklist.infrastructure.bronze
 			)}
@@ -49,7 +50,7 @@
 			)}
 		/>
 		<EvaluationShieldIcon
-			fillColor="#1C274C"
+			fillColor={fillColors.silver}
 			sectionTierCompletionFraction={getCompletionFractionFromSectionTier(
 				checklist.infrastructure.silver
 			)}
@@ -59,7 +60,7 @@
 			)}
 		/>
 		<EvaluationShieldIcon
-			fillColor="#FFD700"
+			fillColor={fillColors.gold}
 			sectionTierCompletionFraction={getCompletionFractionFromSectionTier(
 				checklist.infrastructure.gold
 			)}
@@ -73,7 +74,7 @@
 	<!-- Documentation -->
 	<div class="h-20 w-56 pr-8 flex">
 		<EvaluationShieldIcon
-			fillColor="#CD7F32"
+			fillColor={fillColors.bronze}
 			sectionTierCompletionFraction={getCompletionFractionFromSectionTier(
 				checklist.documentation.bronze
 			)}
@@ -83,7 +84,7 @@
 			)}
 		/>
 		<EvaluationShieldIcon
-			fillColor="#1C274C"
+			fillColor={fillColors.silver}
 			sectionTierCompletionFraction={getCompletionFractionFromSectionTier(
 				checklist.documentation.silver
 			)}
@@ -93,7 +94,7 @@
 			)}
 		/>
 		<EvaluationShieldIcon
-			fillColor="#FFD700"
+			fillColor={fillColors.gold}
 			sectionTierCompletionFraction={getCompletionFractionFromSectionTier(
 				checklist.documentation.gold
 			)}

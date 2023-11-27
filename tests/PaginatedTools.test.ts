@@ -30,7 +30,7 @@ describe('PaginatedTools always', () => {
 
 	it('should render the section and tier completion filter', () => {
 		render(PaginatedTools);
-		expect(screen.getByText('Filter by section- and tier-completion:')).toBeDefined();
+		expect(screen.getByText('Search by minimum standard met:')).toBeDefined();
 	});
 });
 
@@ -97,10 +97,12 @@ describe('PaginatedTools when data is provided', () => {
 			expect(screen.getByText('Previous')).toBeDefined();
 		});
 
-		const button = screen.getByText('Select All');
-		fireEvent.click(button);
+		const selectElement = screen.getByLabelText('Documentation') as HTMLSelectElement;
+		fireEvent.change(selectElement, { target: { value: 'gold' } });
 
 		await waitFor(() => {
+			screen.getByLabelText('Sort by:');
+
 			// i.e. there is now a tool-card visible with the name NiPy
 			//  (it typically does not appear in the first 5 tools)
 			expect(screen.getByRole('heading', { name: /NiPy/ })).toBeDefined();

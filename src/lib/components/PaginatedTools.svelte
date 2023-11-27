@@ -1,9 +1,5 @@
 <script lang="ts">
-	import {
-		sectionTierCompletionCheckboxData,
-		allSectionTierNames,
-		sortingKeys
-	} from '$lib/constants';
+	import { sortingKeys } from '$lib/constants';
 	import type { Tool } from '$lib/types';
 	import { filterToolData, sortFilteredData, tooltip } from '$lib/utils';
 
@@ -59,92 +55,111 @@
 		}
 	}
 
-	function selectAllSectionTiers() {
-		sectionTierQuery = allSectionTierNames;
-	}
+	function updateSectionTierQuery(section: string, event: Event) {
+		const { value } = event.target as HTMLSelectElement;
 
-	function unselectAllSectionTiers() {
-		sectionTierQuery = [];
+		// Remove any existing tier-value for this section
+		sectionTierQuery = sectionTierQuery.filter((item) => !item.startsWith(section));
+
+		// Add the new tier-value for this section
+		if (value) {
+			sectionTierQuery.push(`${section}-${value}`);
+		}
 	}
 </script>
 
 <div
-	class="flex flex-col items-center md:flex-row md:items-stretch md:justify-around lg:justify-center mb-4 lg:gap-8 xl:gap-12"
+	class="flex grow flex-wrap flex-col items-center md:flex-row md:items-stretch md:justify-around lg:justify-center mb-4 lg:gap-8 xl:gap-12"
 >
-	<div class="flex flex-col justify-evenly">
-		<div>
-			<label for="tool-name" class="label">
-				<span class="label-text text-lg">Search by text:</span>
-			</label>
-			<input
-				type="text"
-				placeholder="Enter tool name/description"
-				bind:value={searchQuery}
-				on:focus={() => changePage(1)}
-				class="input input-bordered input-primary w-full max-w-xs"
-				id="tool-name"
-			/>
-		</div>
-
-		<div>
-			<label for="tool-tags" class="label">
-				<span class="label-text text-lg">Search by tag:</span>
-				<span
-					aria-hidden="true"
-					use:tooltip={{
-						content:
-							'Separate multiple tags by comma: e.g. "fsl, docker, python" or "debian,tomography"'
-					}}>❔</span
-				>
-			</label>
-			<input
-				type="text"
-				placeholder="Enter tool metadata"
-				bind:value={metadataQuery}
-				on:focus={() => changePage(1)}
-				class="input input-bordered input-primary w-full max-w-xs"
-				id="tool-tags"
-			/>
-		</div>
+	<div id="textSearch">
+		<label for="tool-name" class="label">
+			<span class="label-text text-lg">Search by text:</span>
+		</label>
+		<input
+			type="text"
+			placeholder="Enter tool name/description"
+			bind:value={searchQuery}
+			on:focus={() => changePage(1)}
+			class="input input-bordered input-primary w-full max-w-xs"
+			id="tool-name"
+		/>
 	</div>
 
-	<div class="flex flex-col" role="region" aria-label="Filter by section and tier completion">
-		<p class="label-text text-lg mb-2">Filter by section- and tier-completion:</p>
-
-		{#if sectionTierQuery == allSectionTierNames}
-			<button
-				type="button"
-				class="btn btn-primary btn-outline btn-xs"
-				on:click={unselectAllSectionTiers}>Unselect All</button
+	<div id="tagSearch">
+		<label for="tool-tags" class="label">
+			<span class="label-text text-lg">Search by tag:</span>
+			<span
+				aria-hidden="true"
+				use:tooltip={{
+					content:
+						'Separate multiple tags by comma: e.g. "fsl, docker, python" or "debian,tomography"'
+				}}>❔</span
 			>
-		{:else}
-			<button type="button" class="btn btn-primary btn-xs" on:click={selectAllSectionTiers}
-				>Select All</button
-			>
-		{/if}
+		</label>
+		<input
+			type="text"
+			placeholder="Enter tool metadata"
+			bind:value={metadataQuery}
+			on:focus={() => changePage(1)}
+			class="input input-bordered input-primary w-full max-w-xs"
+			id="tool-tags"
+		/>
+	</div>
 
-		<!-- Border classes specced to match those of `input` tags above -->
-		<div class="grid grid-cols-3 gap-4 p-4 border-1 border-primary rounded-sm">
-			{#each sectionTierCompletionCheckboxData as sectionTier, index (sectionTier.value)}
-				{#if index === 0}
-					<h2 class="col-span-3 font-medium">Testing:</h2>
-				{:else if index === 3}
-					<h2 class="col-span-3 font-medium">Infrastructure:</h2>
-				{:else if index === 6}
-					<h2 class="col-span-3 font-medium">Documentation:</h2>
-				{/if}
-
-				<label for={sectionTier.value} class="inline">
-					<input
-						id={sectionTier.value}
-						type="checkbox"
-						name={sectionTier.value}
-						value={sectionTier.value}
-						bind:group={sectionTierQuery}
-					/>
-					{sectionTier.name}
+	<div id="sectionTierSelect" class="min-w-min">
+		<label for="testing-select" class="label">
+			<span class="label-text text-lg">Search by minimum standard met:</span>
+		</label>
+		<div class="flex grow gap-4">
+			<div>
+				<select
+					on:change={(changeEvent) => updateSectionTierQuery('testing', changeEvent)}
+					class="select select-primary w-full min-w-min"
+					id="testing-select"
+				>
+					<option value="">❌ None</option>
+					<option value="bronze">🥉 Bronze</option>
+					<option value="silver">🥈 Silver</option>
+					<option value="gold">🥇 Gold</option>
+				</select>
+				<label for="testing-select" class="label justify-end">
+					<span class="label-text-alt">Testing</span>
 				</label>
-			{/each}
+			</div>
+
+			<div>
+				<select
+					on:change={(changeEvent) => updateSectionTierQuery('infrastructure', changeEvent)}
+					class="select select-primary w-full min-w-min"
+					id="infrastructure-select"
+				>
+					<option value="">❌ None</option>
+					<option value="bronze">🥉 Bronze</option>
+					<option value="silver">🥈 Silver</option>
+					<option value="gold">🥇 Gold</option>
+				</select>
+				<label for="infrastructure-select" class="label justify-end">
+					<span class="label-text-alt">Infrastructure</span>
+				</label>
+			</div>
+
+			<div>
+				<select
+					on:change={(changeEvent) => {
+						updateSectionTierQuery('documentation', changeEvent);
+					}}
+					class="select select-primary w-full min-w-min"
+					id="documentation-select"
+				>
+					<option value="">❌ None</option>
+					<option value="bronze">🥉 Bronze</option>
+					<option value="silver">🥈 Silver</option>
+					<option value="gold">🥇 Gold</option>
+				</select>
+				<label for="documentation-select" class="label justify-end">
+					<span class="label-text-alt">Documentation</span>
+				</label>
+			</div>
 		</div>
 	</div>
 </div>
