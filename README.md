@@ -13,6 +13,7 @@ For styling, it uses [TailwindCSS](https://tailwindcss.com/) for syntax/preproce
 For testing, it uses (SvelteKit's built-in) Vitest as the test runner, and `@testing-library/svelte` plus `jsdom` for simulating browser/DOM interactions.
 
 The list of VSCode extensions used during initial development include:
+
 ```
 bradlc.vscode-tailwindcss
 dbaeumer.vscode-eslint
@@ -33,7 +34,7 @@ npm run dev
 npm run dev -- --open
 ```
 
-NB while this includes [HMR](https://vitejs.dev/guide/why.html#slow-updates) out-of-the-box via Vite, the actual data-processing runs in a separate script, `src/lib/data/concatenate_data.js`, before the dev server starts (see the `"scripts"` key in `package.json` for details.) 
+NB while this includes [HMR](https://vitejs.dev/guide/why.html#slow-updates) out-of-the-box via Vite, the actual data-processing runs in a separate script, `src/lib/data/concatenate_data.js`, before the dev server starts (see the `"scripts"` key in `package.json` for details.)
 
 As such, changes to the underlying JSON file will only be registered on process restart (i.e. `ctrl`+`c` followed by `npm run dev`).
 

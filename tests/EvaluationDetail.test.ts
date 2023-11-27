@@ -5,7 +5,7 @@ import data from '../tests/fixtures/evaluatedTools/3d-slicer.json';
 
 describe('EvaluationDetail Component', () => {
 	afterEach(cleanup);
-	
+
 	it('renders the evaluation overview', () => {
 		const { getByText } = render(EvaluationDetail, {
 			props: {

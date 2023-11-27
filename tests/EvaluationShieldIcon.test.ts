@@ -1,7 +1,7 @@
 import { render } from '@testing-library/svelte';
 import { describe, it, expect } from 'vitest';
 import { getCompletionFractionFromSectionTier, mungeChecklistSectionTier } from '../src/lib/utils';
-import { fillColors } from "../src/lib/constants";
+import { fillColors } from '../src/lib/constants';
 import EvaluationShieldIcon from '../src/lib/components/EvaluationShieldIcon.svelte';
 import data from '../tests/fixtures/evaluatedTools/3d-slicer.json';
 
@@ -20,6 +20,6 @@ describe('EvaluationShieldIcon', () => {
 			}
 		});
 
-    expect(container.firstChild).toMatchSnapshot();
+		expect(container.firstChild).toMatchSnapshot();
 	});
 });

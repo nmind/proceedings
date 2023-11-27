@@ -1,7 +1,7 @@
 <script lang="ts">
 	import EvaluationShieldIcon from './EvaluationShieldIcon.svelte';
 	import { getCompletionFractionFromSectionTier, mungeChecklistSectionTier } from '$lib/utils';
-	import { fillColors } from "$lib/constants";
+	import { fillColors } from '$lib/constants';
 	import type { Checklist } from '$lib/types';
 
 	export let checklist: Checklist;

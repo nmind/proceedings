@@ -258,10 +258,10 @@ describe('tooltip', () => {
 		const node: HTMLDivElement & { _tippy?: any } = document.createElement('div');
 		const content = 'Tooltip content';
 		const tip = tooltip(node, { content });
-		
+
 		expect(tip.update).toBeDefined();
 		expect(tip.destroy).toBeDefined();
-		
+
 		expect(node['_tippy']).toBeDefined();
 		expect(node['_tippy'].props.content).toBe(content);
 	});
