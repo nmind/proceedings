@@ -108,7 +108,7 @@
 
 	<div id="sectionTierSelect" class="min-w-min">
 		<label for="testing-select" class="label">
-			<span class="label-text text-lg">Search by minimum standard met:</span>
+			<span class="label-text text-lg">Search by minimum standard:</span>
 		</label>
 		<div class="flex grow gap-4">
 			<div>

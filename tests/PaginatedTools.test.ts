@@ -30,7 +30,7 @@ describe('PaginatedTools always', () => {
 
 	it('should render the section and tier completion filter', () => {
 		render(PaginatedTools);
-		expect(screen.getByText('Search by minimum standard met:')).toBeDefined();
+		expect(screen.getByText('Search by minimum standard:')).toBeDefined();
 	});
 });
 
