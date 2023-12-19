@@ -116,3 +116,89 @@ For more detailed instructions and troubleshooting, almost all of the above was 
 
 ## Hosting II: Integrating With Github Actions
 
+(_Full disclosure: Y Sussman, the [ETI liason dev](https://eti.umn.edu/), has not tested this in production. If you encounter any issues following these steps, he's happy to jump on a call to troubleshoot! Contact him at sussm068@umn.edu_)
+
+To set up a GitHub Action for automatically building and redeploying your site on GitHub Pages every time a change is pushed to the `development` (or any other) branch of the `https://github.com/nmind/proceedings` repository, follow these steps:
+
+1. **Create a GitHub Actions Workflow File**:
+   - Inside the `nmind/proceedings` repository, create a new directory called `.github/workflows`
+   - Inside it, create an e.g. `deploy.yml` YAML file (the filename itself is arbitrary).
+
+2. **Define the Workflow**:
+   - Specify the workflow to run on pushes to the `development` branch:
+     ```yaml
+     name: Build and Deploy
+     on:
+       push:
+         branches:
+           - development
+     ```
+
+3. **Set up the Environment**:
+   - Add steps to check out the repository and set up the Node environment:
+     ```yaml
+     jobs:
+       build-and-deploy:
+         runs-on: ubuntu-latest
+         steps:
+           - name: Checkout
+             uses: actions/checkout@v2
+           - name: Set up Node
+             uses: actions/setup-node@v1
+             with:
+               node-version: '18.x' # v18.16.1 was used during initial development; once fully set up, this should sometime in 2024 be updated to '20.x'
+     ```
+   - Add steps to install dependencies and build the project:
+     ```yaml
+       - name: Install and Build
+         run: |
+           npm install
+           npm run build
+     ```
+
+4. **Deploy to GitHub Pages**:
+    - Use GitHub's `actions/deploy-pages@v3` to deploy the built site to the e.g. `gh-pages` branch:
+      ```yaml
+          - name: Deploy to GitHub Pages
+            uses: actions/deploy-pages@v3
+      ```
+    - NB there are several additional options available, e.g. `workflow_dispatch` to enable manual invocations from the browser UI, or `concurrency` to set behavior when multiple pushes are made.
+    - For more such options, see the [generic static-site "Starter Workflow" GitHub Action](https://github.com/actions/starter-workflows/blob/main/pages/static.yml) from which this was adapted.
+
+5. **Commit and Push the Workflow File**:
+   - Commit the new `deploy.yml` file to your repository and push the changes to GitHub. It should look something like this: 
+    ```yaml
+    name: Build and Deploy NMIND Proceedings to GitHub Pages
+
+    on:
+      push:
+        branches:
+          - development
+
+    jobs:
+      build-and-deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+          - name: Checkout
+            uses: actions/checkout@v2
+
+          - name: Set up Node
+            uses: actions/setup-node@v1
+            with:
+              node-version: '18.x'
+
+          - name: Install dependencies
+            run: npm install
+
+          - name: Build
+            run: npm run build
+
+          - name: Deploy to GitHub Pages
+            uses: actions/deploy-pages@v3
+    ```
+   - GitHub Actions will automatically recognize the workflow file and start running it based on the defined trigger (pushes to the `development` branch).
+   - You can use the `Actions` tab in the `https://github.com/nmind/proceedings` repository to monitor the workflow's runs. 
+
+For more detailed information, you can refer to the [GitHub Actions documentation](https://docs.github.com/en/actions), especially the [usage of Starter Workflows](https://docs.github.com/en/actions/learn-github-actions/using-starter-workflows). (And you're welcome to contact Y Sussman for further collaboration!)
+
