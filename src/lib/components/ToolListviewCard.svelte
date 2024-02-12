@@ -13,7 +13,7 @@
 </script>
 
 <div class="p-4">
-	<a href={`/${tool.slug}/`}>
+	<a href={`/proceedings/${tool.slug}/`}>
 		<div
 			class="card-wrapper w-full flex flex-col justify-center lg:flex-row lg:justify-between items-center bg-base-100 shadow-xl"
 		>
