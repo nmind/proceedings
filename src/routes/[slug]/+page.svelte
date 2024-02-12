@@ -2,6 +2,7 @@
 	import EvaluationDetail from '$lib/components/EvaluationDetail.svelte';
 	import { sortEvaluationsByDate } from '$lib/utils';
 	import type { Tool, Evaluation } from '$lib/types';
+	import { base } from '$app/paths';
 
 	export let data: Tool;
 
@@ -19,7 +20,7 @@
 		<div class="flex flex-row items-center justify-evenly">
 			<div class="aspect-square object-cover max-h-56 p-4">
 				<img
-					src={`/tool_icons/${data?.image}`}
+					src={`${base}/tool_icons/${data?.image}`}
 					alt={`Icon for the ${data?.name} neuroimaging tool`}
 				/>
 			</div>

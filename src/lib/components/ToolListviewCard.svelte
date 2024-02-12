@@ -4,6 +4,7 @@
 	import type { Tool, Evaluation } from '$lib/types';
 
 	import ToolListviewEvaluation from './ToolListviewEvaluation.svelte';
+	import { base } from '$app/paths';
 
 	export let tool: Tool;
 	export let setMetadataQuery: (event: MouseEvent) => void;
@@ -13,7 +14,7 @@
 </script>
 
 <div class="p-4">
-	<a href={`/proceedings/${tool.slug}/`}>
+	<a href={`${base}/${tool.slug}/`}>
 		<div
 			class="card-wrapper w-full flex flex-col justify-center lg:flex-row lg:justify-between items-center bg-base-100 shadow-xl"
 		>
@@ -25,14 +26,14 @@
 					{#if docsUrl}
 						<a href={`https://www.${docsUrl.href}/`} target="_blank" rel="noopener noreferrer">
 							<img
-								src={`/tool_icons/${tool.image}`}
+								src={`${base}/tool_icons/${tool.image}`}
 								alt={`The icon of the ${tool.name} neuroimaging tool`}
 							/>
 						</a>
 					{:else}
 						<div class="tooltip" data-tip="No online documentation available">
 							<img
-								src={`/tool_icons/${tool.image}`}
+								src={`${base}/tool_icons/${tool.image}`}
 								alt={`The icon of the ${tool.name} neuroimaging tool`}
 							/>
 						</div>

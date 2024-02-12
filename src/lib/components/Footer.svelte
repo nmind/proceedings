@@ -1,3 +1,8 @@
+<script>
+
+	import { base } from "$app/paths";
+
+</script>
 <footer class="footer footer-center p-10 bg-base-200 text-base-content rounded">
 	<div class="grid grid-flow-col gap-6">
 		<a
@@ -13,7 +18,7 @@
 			class="link link-hover">Gather</a
 		>
 		<a
-			href="/NMIND_monthly_meeting.ics"
+			href={`${base}/NMIND_monthly_meeting.ics`}
 			rel="nofollow noopener noreferrer"
 			target="_blank"
 			class="link link-hover">Monthly Hack-a-day</a
