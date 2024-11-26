@@ -6,6 +6,8 @@ on:
 jobs:
   update-proceedings:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Check labels
@@ -25,6 +27,8 @@ jobs:
       - name: Checkout
         if: steps.check_labels.outputs.result == 'true'
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Extract checklist data
         if: steps.check_labels.outputs.result == 'true'
@@ -57,9 +61,15 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
         
-      - name: Push to proceedings page
+      - name: Commit files
         if: steps.check_labels.outputs.result == 'true'
         run: |
           git add ${{ env.file_name }}
           git commit -m 'Closes #${{ github.event.issue.number }}'
-          git push
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: repository
+          
