@@ -64,8 +64,8 @@
   },
   "testing": {
     "bronze": {
-      "1": false,
-      "2": false
+      "1": true,
+      "2": true
     },
     "silver": {
       "1": false,
