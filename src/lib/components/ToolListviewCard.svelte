@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { toolURLTextDescriptors } from '$lib/constants';
+	import type { Evaluation, Tool } from '$lib/types';
 	import { getMostRecentEvaluation, getToolUrlByTextDescriptor } from '$lib/utils';
-	import type { Tool, Evaluation } from '$lib/types';
 
-	import ToolListviewEvaluation from './ToolListviewEvaluation.svelte';
 	import { base } from '$app/paths';
+	import ToolListviewEvaluation from './ToolListviewEvaluation.svelte';
 
 	export let tool: Tool;
 	export let setMetadataQuery: (event: MouseEvent) => void;
@@ -24,7 +24,7 @@
 			>
 				<div class="aspect-square object-cover h-32 p-4">
 					{#if docsUrl}
-						<a href={`https://www.${docsUrl.href}`} target="_blank" rel="noopener noreferrer">
+						<a href={`${docsUrl.href}`} target="_blank" rel="noopener noreferrer">
 							<img
 								src={`${base}/tool_icons/${tool.image}`}
 								alt={`The icon of the ${tool.name} neuroimaging tool`}
