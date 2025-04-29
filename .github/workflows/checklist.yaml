@@ -52,7 +52,7 @@ jobs:
           base_dir: src/lib/data/entries
           json_schema: .github/static/checklist_schema.json
           ajv_strict_mode: false
-          json_exclude_regex: ''
+          files: ${{ env.file_name }}
       
       - name: Configure git
         if: steps.check_labels.outputs.result == 'true'
@@ -66,4 +66,3 @@ jobs:
           git add ${{ env.file_name }}
           git commit -m 'Closes #${{ github.event.issue.number }}'
           git push 
-          
