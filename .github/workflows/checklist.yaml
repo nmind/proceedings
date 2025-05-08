@@ -86,7 +86,7 @@ jobs:
         with:
           issue-number: ${{ github.event.issue.number }}
           body: |
-            ✅ **Your NMIND badge has been generated!**: 
+            ✅ **Your new NMIND badge has been generated!**: 
             ![${{ env.name }}](${{ env.badge }})
 
             🔗 **Badge URL**:
