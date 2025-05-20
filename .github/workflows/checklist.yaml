@@ -34,7 +34,7 @@ jobs:
         run: |
           issue_body='${{ github.event.issue.body }}'
           checklist=$(echo "$issue_body" | sed -n '/```json/I,/```/p' | sed '1d;$d')
-          name=$(echo "$checklist" | jq -r '.name' | sed 's/ /_/g')
+          name=$(echo "$checklist" | jq -r '.name' | sed -e 's/ /_/g' -e 's/-/_/g')
           echo "checklist=$(echo $checklist)" >> $GITHUB_ENV
           echo "name=$(echo $name)" >> $GITHUB_ENV
 
@@ -52,7 +52,7 @@ jobs:
           base_dir: src/lib/data/entries
           json_schema: .github/static/checklist_schema.json
           ajv_strict_mode: false
-          json_exclude_regex: ''
+          files: ${{ env.file_name }}
       
       - name: Configure git
         if: steps.check_labels.outputs.result == 'true'
@@ -66,4 +66,36 @@ jobs:
           git add ${{ env.file_name }}
           git commit -m 'Closes #${{ github.event.issue.number }}'
           git push 
-          
+
+      # Badge generation steps
+      - name: Setup Python
+        if: steps.check_labels.outputs.result == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+        
+      - name: Generate badge
+        if: steps.check_labels.outputs.result == 'true'
+        run: |
+          badge_url=$(python .github/scripts/create_badge.py "${{ env.file_name }}")
+          echo "badge=$(echo $badge_url)" >> $GITHUB_ENV
+      
+      - name: Comment on issue
+        if: steps.check_labels.outputs.result == 'true'
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            ✅ **Your new NMIND badge has been generated!**: 
+            ![${{ env.name }}](${{ env.badge }})
+
+            🔗 **Badge URL**:
+            ```
+            ${{ env.badge }}
+            ```
+
+            📄 **To embed this badge in a `README.md`, use the following Markdown:**
+            ```md
+            [![${{ env.name }}](${{ env.badge }})](https://nmind.org/proceedings/${{ env.name }})
+            ```
+            
