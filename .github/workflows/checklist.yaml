@@ -20,7 +20,7 @@ jobs:
             const hasApproved = labels.includes('approved');
             const hasChecklist = labels.includes('checklist');
             return hasApproved && hasChecklist;
-      
+
       - name: Early exit
         if: steps.check_labels.outputs.result == 'false'
         run: echo "Not an approved checklist issue - exiting"
@@ -59,7 +59,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
-        
+
       - name: Commit files
         if: steps.check_labels.outputs.result == 'true'
         run: |
@@ -79,6 +79,17 @@ jobs:
         run: |
           badge_url=$(python .github/scripts/create_badge.py "${{ env.file_name }}")
           echo "badge=$(echo $badge_url)" >> $GITHUB_ENV
+
+      # Generate url-safe, directly from checklist (env.name already altered)
+      - name: Generate URL-safe tool string
+        if: steps.check_labels.outputs.result == 'true'
+        run: |
+          tool_url=$(echo "$checklist" \
+            | jq -r '.name' \
+            | tr '[:upper:]' '[:lower:]' \
+            | sed 's/[^a-z0-9_ ]//g' \
+            | tr ' ' '-')
+          echo "safe_url=$(echo $tool_url)" >> $GITHUB_ENV
       
       - name: Comment on issue
         if: steps.check_labels.outputs.result == 'true'
@@ -96,6 +107,6 @@ jobs:
 
             📄 **To embed this badge in a `README.md`, use the following Markdown:**
             ```md
-            [![${{ env.name }}](${{ env.badge }})](https://nmind.org/proceedings/${{ env.name }})
+            [![${{ env.name }}](${{ env.badge }})](https://nmind.org/proceedings/${{ env.safe_url }})
             ```
             
