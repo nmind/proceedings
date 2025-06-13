@@ -21,7 +21,7 @@ class ComplianceColor(str, Enum):
 
 class ShieldColor(str, Enum):
     BRONZE = "#CD7F32"
-    SILVER = "#1C274C"
+    SILVER = "#C5C5C5"
     GOLD = "#FFD700"
 
 
