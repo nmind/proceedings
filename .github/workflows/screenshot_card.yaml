@@ -4,6 +4,9 @@ on:
     workflows: ["pages-build-deployment"]
     types:
       - completed
+concurrency:
+  group: checklist-workflow
+  cancel-in-progress: false
 
 jobs:
   screenshot:
@@ -65,7 +68,7 @@ jobs:
         with:
           issue-number: ${{ env.issue_number }}
           body: |
-            🖼️ **Screenshot of tool card for **${{ env.raw_name }}**:
+            🖼️ **Screenshot of tool card for ${{ env.raw_name }}**:
             ![${{ env.raw_name }} screenshot](${{ env.screenshot_url }})
 
             🔗 **Screenshot URL**:
