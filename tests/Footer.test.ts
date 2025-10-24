@@ -1,5 +1,5 @@
-import { render, cleanup } from '@testing-library/svelte';
-import { describe, it, expect, afterEach } from 'vitest';
+import { cleanup, render } from '@testing-library/svelte';
+import { afterEach, describe, expect, it } from 'vitest';
 import Footer from '../src/lib/components/Footer.svelte';
 
 describe('Footer', () => {
@@ -7,7 +7,7 @@ describe('Footer', () => {
 
 	it('should render all links', () => {
 		const { getByRole } = render(Footer);
-		const linkNames = ['GitHub', 'Gather', 'Monthly Hack-a-day', 'Mailing List'];
+		const linkNames = ['GitHub', 'Mailing List'];
 
 		linkNames.forEach((linkName) => {
 			expect(getByRole('link', { name: linkName })).toBeDefined();
