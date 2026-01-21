@@ -1,5 +1,4 @@
 <script>
-	import { base } from '$app/paths';
 </script>
 
 <footer class="footer footer-center p-10 bg-base-200 text-base-content rounded">
@@ -11,18 +10,6 @@
 			class="link link-hover">GitHub</a
 		>
 		<a
-			href="https://gather.town/app/ESJPNXX7CVirKett/nmind"
-			rel="nofollow noopener noreferrer"
-			target="_blank"
-			class="link link-hover">Gather</a
-		>
-		<a
-			href={`${base}/NMIND_monthly_meeting.ics`}
-			rel="nofollow noopener noreferrer"
-			target="_blank"
-			class="link link-hover">Monthly Hack-a-day</a
-		>
-		<a
 			href="https://groups.google.com/g/nmind"
 			rel="nofollow noopener noreferrer"
 			target="_blank"
@@ -30,6 +17,6 @@
 		>
 	</div>
 	<div>
-		<p>© 2024 NMIND.</p>
+		<p>© 2025 NMIND.</p>
 	</div>
 </footer>
